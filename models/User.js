@@ -1,0 +1,1 @@
+// will hold Sequelize Model for users
