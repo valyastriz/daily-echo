@@ -4,6 +4,7 @@ const session = require('express-session');
 const exphbs = require('express-handlebars');
 const routes = require('./controllers');
 const helpers = require('./utils/helpers');
+const bodyParser = require('body-parser');
 require('dotenv').config();
 
 const sequelize = require('./config/connection');
@@ -30,6 +31,7 @@ const sess = {
   })
 };
 
+
 app.use(session(sess));
 
 // Inform Express.js on which template engine to use
@@ -44,4 +46,13 @@ app.use(routes);
 
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log('Now listening'));
+});
+
+
+//SignUP.handlebars
+app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
+app.set('view engine', 'handlebars');
+
+app.listen(port, () => {
+  console.log(`Server is running at http://localhost:${port}`);
 });
