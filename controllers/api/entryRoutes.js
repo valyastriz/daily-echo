@@ -15,22 +15,22 @@ router.get('/', async (req, res) => {
 });
 
 // get single diary entry
-router.get('/api/entries/:id', (req, res) => {
+router.get('/:id', (req, res) => {
 
 });
 
 // create a new entry
-router.post('/api/entries', (req, res) => {
+router.post('/', (req, res) => {
 
 });
 
 // update an entry
-router.put('api/entries/:id', (req, res) => {
+router.put('/:id', (req, res) => {
 
 });
 
 // delete an entry
-router.delete('/api/entries/:id', (req, res) => {
+router.delete('/:id', (req, res) => {
 
 });
 
