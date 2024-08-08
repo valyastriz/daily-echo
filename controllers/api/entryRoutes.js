@@ -3,19 +3,30 @@
 const express = require('express');
 const router = express.Router();
 
-
+// get all diary entries
 router.get('/entries', (req, res) => {
-  res.send('Welcome to your diary!');
+
+  
 });
 
+// get single diary entry
+router.get('/api/entries/:id', (req, res) => {
 
-router.get('/login', (req, res) => {
-  res.send('Thank you for coming back!');
 });
 
+// create a new entry
+router.post('/api/entries', (req, res) => {
 
-router.get('/contact', (req, res) => {
-  res.send('Contact page??');
+});
+
+// update an entry
+router.put('api/entries/:id', (req, res) => {
+
+});
+
+// delete an entry
+router.delete('/api/entries/:id', (req, res) => {
+
 });
 
 module.exports = router;
