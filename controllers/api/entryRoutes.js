@@ -2,11 +2,16 @@
 
 const express = require('express');
 const router = express.Router();
+const { Entry } = require('../../models');
 
 // get all diary entries
-router.get('/entries', (req, res) => {
-
-  
+router.get('/', async (req, res) => {
+    try {
+        const entries = await Entry.findAll();
+        res.status(200).json(entries);
+    } catch (err) {
+        res.status(500).json(err);
+    }
 });
 
 // get single diary entry
