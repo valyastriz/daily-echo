@@ -5,6 +5,7 @@ const exphbs = require('express-handlebars');
 const routes = require('./controllers');
 const helpers = require('./utils/helpers');
 require('dotenv').config();
+const entryRoutes = require('./controllers/api/entryRoutes');
 
 const sequelize = require('./config/connection');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
@@ -30,6 +31,7 @@ const sess = {
   })
 };
 
+app.use('/api/entries', entryRoutes);
 app.use(session(sess));
 
 // Inform Express.js on which template engine to use
