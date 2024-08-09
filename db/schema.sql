@@ -1,2 +1,2 @@
-DROP DATABASE IF EXISTS diaryBlog_db;
-CREATE DATABASE diaryBlog_db;
+DROP DATABASE IF EXISTS diaryblog_db;
+CREATE DATABASE diaryblog_db;
