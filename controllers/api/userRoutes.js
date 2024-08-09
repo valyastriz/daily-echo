@@ -1,7 +1,7 @@
 // will hold Routes for user-related API calls
 const express = require('express');
 const router = express.Router();
-const userRoutes = require('../../models');
+const { User, Entry } = require('../../models');
 
 
 
@@ -14,7 +14,7 @@ router.get('/', async (req, res) => {
         res.status(500).send(error.message);
         
     }
-})
+});
 
 
 router.post('/', async (req, res) => {
@@ -24,7 +24,7 @@ router.post('/', async (req, res) => {
     } catch (error) {
         res.status(400).send(error.message);
     }
-})
+});
 
 router.get('/:id', async (req, res) => {
     try {
@@ -34,7 +34,7 @@ router.get('/:id', async (req, res) => {
     } catch (error) {
         res.status(500).send(error.message);
     }
-})
+});
 
 router.put('/:id', async (req, res) => {
     try {
@@ -46,18 +46,33 @@ router.put('/:id', async (req, res) => {
     } catch (error) {
         res.status(400).send(error.message);
     }
-})
+});
 
 router.delete('/:id', async (req, res) => {
     try {
+        // find the user to be deleted
+        const user = await User.findByPk(req.params.id); 
+        if (!user) return res.status(404).send('User not found');
+
+        // first delete all entries associated with the user
+        await Entry.destroy({
+            where: { user_id: req.params.id }
+        });
+
+        // then, delete the user
         const deletedRows = await User.destroy({
             where:{id:req.params.id},
         }); 
-        if (!deletedRows) return res.status(404).send('User not found');
-        res.status(204).end();
+
+        // send confirmation with details of the deleted user
+        res.status(200).json({
+            message: 'User successfully deleted',
+            deteledUser: user
+        });
     } catch (error) {
+        console.error('Error deleting user:', error);
         res.status(500).send(error.message);
     }
-})
+});
 
 module.exports = router;
