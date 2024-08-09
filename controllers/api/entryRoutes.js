@@ -40,7 +40,7 @@ router.get('/:id', async (req, res) => {
 // create a new entry
 router.post('/', async (req, res) => {
     try {
-        const newEntry = await Entries.create({
+        const newEntry = await Entry.create({
             title: req.body.title,
             content: req.body.content,
             mood: req.body.mood,
@@ -55,8 +55,21 @@ router.post('/', async (req, res) => {
 });
 
 // update an entry
-router.put('/:id', (req, res) => {
+router.put('/:id', async (req, res) => {
+    try {
+        const updatedEntry = await Entry.update(req.body, {
+            where: { id: req.params.id },
+        });
 
+        if (updatedEntry[0] === 0) {
+            return res.status(404).json({ message: 'No entry found wit this id'});
+        }
+
+        res.status(200).json({ message: 'Entry updated successfully' });
+    } catch (err) {
+        console.error('Error updating entry:', err);
+        res.status(500).json(err);
+    }
 });
 
 // delete an entry
