@@ -38,8 +38,20 @@ router.get('/:id', async (req, res) => {
 });
 
 // create a new entry
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
+    try {
+        const newEntry = await Entries.create({
+            title: req.body.title,
+            content: req.body.content,
+            mood: req.body.mood,
+            tags: req.body.tags,
+            // user_id: req.session.user_id, 
+        });
 
+        res.status(201).json(newEntry);
+    } catch (err) {
+       res.status(500).json(err); 
+    }
 });
 
 // update an entry
