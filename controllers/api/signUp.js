@@ -1,19 +1,5 @@
 
 
-
-
-
-
-
-
-
-
-
-
-app.use(bodyParser.urlencoded({ extended: false }));
-
-app.use(express.static(path.join(__dirname, 'public')));
-
 app.post('/signup', (req, res) => {
   const { username, password } = req.body;
   

@@ -49,10 +49,4 @@ sequelize.sync({ force: false }).then(() => {
 });
 
 
-//SignUP.handlebars
-app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
-app.set('view engine', 'handlebars');
 
-app.listen(port, () => {
-  console.log(`Server is running at http://localhost:${port}`);
-});
