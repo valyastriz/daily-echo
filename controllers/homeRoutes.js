@@ -3,17 +3,27 @@
 const router = require('express').Router();
 const { Entry, User } = require('../models');
 
-//Have to think about where to put this! 
-app.get('/', (req, res) => {
-    res.render('home', { title: 'Home Page' });
-  });
-  
-  app.get('/about', (req, res) => {
-    res.render('about', { title: 'About Page' });
-  });
-  
-  app.get('/signup', (req, res) => {
-    res.render('signup', { title: 'Sign Up' });
-  });
-  //Through here
+// router for rendering the home page 
+router.get('/', async (req, res) => {
+    try {
+        const entries = await Entry.findAll({
+            // optionally include user data if needed - need to decide on this for sure
+            include: [ { model: User }],
+        });
+        const serializedEntries = entries.map((entry) => entry.get({ plain: true }));
 
+        res.render('home', {
+            title: 'Home Page',
+            entries: serializedEntries
+        });
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
+
+// route to render about page, if we decide to make one
+router.get('/about', (req, res) => {
+    res.render('about', { title: 'About Page' });
+});
+
+module.exports = router;
