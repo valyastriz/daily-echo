@@ -7,17 +7,24 @@ const { Entry, User } = require('../models');
 // router for rendering the home page 
 router.get('/', async (req, res) => {
     try {
+        let entries = [];
 
-        
-        const entries = await Entry.findAll({
-            // optionally include user data if needed - need to decide on this for sure
-            include: [ { model: User, attributes: ['name' ] }],
-        });
+        if (req.session.logged_in) {
+            entries = await Entry.findAll({
+                where: {
+                    user_id: req.session.user_id
+                },
+                include: [ { model: User, attributes: ['name' ] }],
+            });
+        }
+
         const serializedEntries = entries.map((entry) => entry.get({ plain: true }));
 
         res.render('home', {
             title: 'Home Page',
-            entries: serializedEntries
+            entries: serializedEntries,
+            logged_in: req.session.logged_in,
+            user: req.session.user || null
         });
     } catch (err) {
         res.status(500).json(err);
