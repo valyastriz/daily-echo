@@ -1,20 +1,37 @@
 {{!-- homepage template --}}
 <main class="main-content">
-            <aside class="sidebar">
-                {{> button}}
-            </aside>
+    <aside class="sidebar">
+        <button class="new-entry-btn">
+            <img src="/images/newEntry.webp" alt="New Entry">
+            New Entry
+        </button>
+        <ul class="entry-item">
+            {{#each entries}}
+            <h3 class="entry-list">{{this.title}}</h3>
+            <p class="entry-date">{{format_date this.created_at}}</p>
+            <p class="entry-tags">{{this.tags}}</p>
+            {{/each}}
+        </ul>
+    </aside>
 
-            <section class="entry-details">
-                <header class="entry-header">
-                    <h1>{{entry.title}}</h1>
-                    <div class="entry-meta">
-                        <span class="entry-mood">{{entry.mood}}</span>
-                        <span class="entry-date">{{entry.date}}</span>
-                    </div>
-                    <!-- <img src="/images/image copy 3.png" alt="tablet with pencil" class="tablet" width="25"> -->
-                </header>
-                <div class="entry-content">
-                    <p>{{entry.content}}</p>
-                </div>
-            </section>
-        </main>
+    <section class="entry-details">
+        {{#if entry}}
+        <header class="entry-header">
+            <h1>{{entry.title}}</h1>
+            <div class="entry-meta">
+                <span class="entry-mood">{{entry.mood}}</span>
+                <span class="entry-date">{{format_date entry.created_at}}</span>
+            </div>
+        </header>
+        <div class="entry-content">
+            <p>{{entry.content}}</p>
+        </div>
+        <div class="entry-actions">
+            <button class="edit-entry-btn">Edit</button>
+            <button class="delete-entry-btn">Delete</button>
+        </div>
+        {{else}}
+        <p>Select an entry to view details, or add a new entry.</p>
+        {{/if}}
+    </section>
+</main>

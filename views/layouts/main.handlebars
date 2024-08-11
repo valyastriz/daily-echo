@@ -16,11 +16,16 @@
                 <span>Daily Echo</span>
             </div>
             <div class="user-info">
-                <span>Hello, {{User}}</span>
-                <!-- <img src="/images/image copy 2.png" alt="User Icon" class="user-icon"> -->
+                {{#if logged_in}}
+                    <span>Hello, {{User}}</span>
+                {{else}}
+                    <span>Hello, Guest</span>
+                {{/if}}
             </div>
         </header>
+
         {{{body}}}
+        
     </div>
     <div class="footer">
     <footer>
