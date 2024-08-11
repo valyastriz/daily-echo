@@ -7,6 +7,8 @@ const { Entry, User } = require('../models');
 // router for rendering the home page 
 router.get('/', async (req, res) => {
     try {
+
+        
         const entries = await Entry.findAll({
             // optionally include user data if needed - need to decide on this for sure
             include: [ { model: User, attributes: ['name' ] }],
