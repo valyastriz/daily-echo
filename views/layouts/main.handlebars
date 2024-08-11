@@ -1,41 +1,34 @@
-{{!-- Main layout template --}}
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daily Echo</title>
+    <title>Daily Echo - {{title}}</title>
     <link rel="stylesheet" href="/css/styles.css"> 
 </head>
 <body>
     <div class="container">
-        <header class="header d-flex justify-content-between align-items-center p-3 bg-light">
-            <div class="logo d-flex align-items-center">
-                <img src="/images/logo.webp" alt="Daily Echo" class="logo-image mr-2">
+        <header class="header">
+            <div class="logo">
+                <img src="/images/logo.webp" alt="Daily Echo" class="logo-image">
                 <span>Daily Echo</span>
             </div>
             <div class="user-info">
                 {{#if logged_in}}
                     <span>Hello, {{user.name}}</span>
                 {{else}}
-                    <span>Welcome to Daily Echo</span>
+                    <span>Hello, Guest</span>
                 {{/if}}
             </div>
         </header>
 
-        <main class="content">
-            {{{body}}}
-        </main>
+        {{{body}}} <!-- This will be replaced by the content of the specific page -->
 
-        <footer class="footer text-center p-3 bg-light mt-auto">
+    </div>
+    <div class="footer">
+        <footer>
             <h4 class="footer2">&copy; 2024 Daily Echo. All rights reserved.</h4>
         </footer>
     </div>
-
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="/js/script.js"></script>
 </body>
 </html>
