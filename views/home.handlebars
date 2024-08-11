@@ -1,1 +1,20 @@
 {{!-- homepage template --}}
+<main class="main-content">
+            <aside class="sidebar">
+                {{> button}}
+            </aside>
+
+            <section class="entry-details">
+                <header class="entry-header">
+                    <h1>{{entry.title}}</h1>
+                    <div class="entry-meta">
+                        <span class="entry-mood">{{entry.mood}}</span>
+                        <span class="entry-date">{{entry.date}}</span>
+                    </div>
+                    <!-- <img src="/images/image copy 3.png" alt="tablet with pencil" class="tablet" width="25"> -->
+                </header>
+                <div class="entry-content">
+                    <p>{{entry.content}}</p>
+                </div>
+            </section>
+        </main>
