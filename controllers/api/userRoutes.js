@@ -136,12 +136,18 @@ router.post('/login', async (req, res) => {
 // route to log user out
 router.post('/logout', (req, res) => {
     if (req.session.logged_in) {
-        res.session.destroy(() => {
-            res.status(204).end();
+        req.session.destroy((err) => {
+            if (err) {
+                res.status(500).json({ message: 'Failed to log out. Please try again.' });
+                return;
+            }
+
+            res.status(204).end(); // Successfully logged out
         });
     } else {
-        res.status(404).end();
+        res.status(404).json({ message: 'No active session found.' });
     }
 });
+
 
 module.exports = router;
