@@ -9,7 +9,7 @@ router.get('/', async (req, res) => {
     try {
         const entries = await Entry.findAll({
             // optionally include user data if needed - need to decide on this for sure
-            include: [ { model: User }],
+            include: [ { model: User, attributes: ['name' ] }],
         });
         const serializedEntries = entries.map((entry) => entry.get({ plain: true }));
 
