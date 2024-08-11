@@ -1,20 +1,25 @@
 {{!-- homepage template --}}
 <main class="main-content">
     <aside class="sidebar">
-        <button class="new-entry-btn">
-            <img src="/images/newEntry.webp" alt="New Entry">
-            New Entry
-        </button>
-        <ul class="entry-item">
-            {{#each entries}}
-            <h3 class="entry-list">{{this.title}}</h3>
-            <p class="entry-date">{{format_date this.created_at}}</p>
-            <p class="entry-tags">{{this.tags}}</p>
-            {{/each}}
-        </ul>
+        {{#if logged_in}}
+            {{>button}} 
+            {{!-- Show entries and action only if logged in --}}
+        {{else}}
+            <form id="login-form">
+                <label for="username">Username:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="'password">Password:</label>
+                <input type="password" id="password" name="password" required>
+
+                <button type="submit">Log In</button>
+                <a href="/signup">Sign Up</a>
+            </form>
+            {{/if}}
     </aside>
 
-    <section class="entry-details">
+    {{#if logged_in}}
+        <section class="entry-details">
         {{#if entry}}
         <header class="entry-header">
             <h1>{{entry.title}}</h1>
@@ -34,4 +39,5 @@
         <p>Select an entry to view details, or add a new entry.</p>
         {{/if}}
     </section>
+    {{/if}}
 </main>
