@@ -1,1 +1,65 @@
 {{!-- single diary entries view template --}}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Echo</title>
+    <link rel="stylesheet" href="/style2.css"> 
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">
+                <img src="/images/image.png" alt="Daily Echo" width="40">
+                <span>Daily Echo</span>
+            </div>
+            <div class="user-info">
+                <span>Hello, {{user}}</span>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <aside class="sidebar">
+                <button class="new-entry-btn">
+                    <img src="/images/image copy.png" alt="New Entry" width="35" height="40">
+                    New Entry
+                </button>
+                <!-- <button type="submit" class="new-entry-btn">New Entry
+                <img src="images/image copy.png" alt="Pencil Emoticon" width="35" height="40">
+                </button> -->
+                <ul class="entry-list">
+                    {{#each entries}}
+                        <li class="entry-item">
+                            <span>{{title}}</span>
+                            <span>{{date}}</span>
+                            <span>{{mood}}</span>
+                        </li>
+                    {{/each}}
+                </ul>
+            </aside>
+
+            <section class="entry-details">
+                <header class="entry-header">
+                    <h1>{{selectedEntry.title}}</h1>
+                    <div class="entry-meta">
+                        <span>{{selectedEntry.date}}</span>
+                        <span>{{selectedEntry.mood}}</span>
+                        <!-- <img src="/images/image copy 3.png" alt="Date Icon" width="30"> -->
+                    </div>
+                </header>
+                <article class="entry-content">
+                    <p>{{selectedEntry.content}}</p>
+                </article>
+            </section>
+        </main>
+        
+        <footer class="footer">
+            <button class="trash">
+            <img src="images/image copy 2.png" alt="Trash receptacle" width="25">
+            </button>
+        </footer>
+    </div>
+</body>
+</html>
