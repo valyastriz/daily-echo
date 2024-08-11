@@ -1,14 +1,20 @@
-document.querySelector('#logout-form').addEventListener('submit', async (event) => {
-    event.preventDefault();
+document.addEventListener('DOMContentLoaded', () => {
+    const logoutForm = document.querySelector('#logout-form');
 
-    const response = await fetch('/api/users/logout', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json '},
-    });
+    if (logoutForm) {
+        logoutForm.addEventListener('submit', async (event) => {
+            event.preventDefault();
 
-    if (response.ok) {
-        document.location.replace('/login');
-    } else {
-        alert('Failed to log out.');
+            const response = await fetch('/api/users/logout', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+            });
+
+            if (response.ok) {
+                document.location.replace('/login');
+            } else {
+                alert('Failed to log out.');
+            }
+        });
     }
 });
