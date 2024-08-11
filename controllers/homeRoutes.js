@@ -22,6 +22,15 @@ router.get('/', async (req, res) => {
     }
 });
 
+// route to render signup page 
+router.get('/signup', (req, res) => {
+    console.log('Signup route access');
+    res.render('signup', {
+        title: 'Sign Up',
+    });
+});
+
+
 // route to render about page, if we decide to make one
 router.get('/about', (req, res) => {
     res.render('about', { title: 'About Page' });
