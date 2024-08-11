@@ -1,1 +1,37 @@
 {{!-- user dashboard template --}}
+
+{{!-- dashboard template for logged-in users --}}
+<main class="main-content d-flex">
+    <aside class="sidebar">
+        <button class="new-entry-btn">
+            <img src="/images/newEntry.webp" alt="New Entry">
+            New Entry
+        </button>
+        <ul class="entry-list">
+            {{#each entries}}
+            <li class="entry-item">
+                <h3 class="entry-title">{{this.title}}</h3>
+                <p class="entry-date">{{this.date}}</p>
+                <p class="entry-tags">{{this.tags}}</p>
+            </li>
+            {{/each}}
+        </ul>
+    </aside>
+
+    <section class="entry-details">
+        <header class="entry-header">
+            <h1>{{entry.title}}</h1>
+            <div class="entry-meta">
+                <span class="entry-mood">{{entry.mood}}</span>
+                <span class="entry-date">{{entry.date}}</span>
+            </div>
+        </header>
+        <div class="entry-content">
+            <p>{{entry.content}}</p>
+        </div>
+        <div class="entry-actions">
+            <button class="btn btn-danger">Delete</button>
+            <!-- You can add more buttons for actions like editing the entry -->
+        </div>
+    </section>
+</main>
