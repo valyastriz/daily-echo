@@ -39,6 +39,12 @@ router.get('/signup', (req, res) => {
     });
 });
 
+// route to handle rendering login page
+router.get('/login', (req, res) => {
+    res.render('login', {
+        title: 'Login'
+    });
+});
 
 // route to render about page, if we decide to make one
 router.get('/about', (req, res) => {

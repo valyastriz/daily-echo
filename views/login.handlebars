@@ -1,0 +1,24 @@
+{{!-- login page template --}}
+
+<div class="login-container">
+    <h2>Log In</h2>
+    <form id="login-form">
+        <!-- Username -->
+        <div class="form-group">
+            <label for="name">Username:</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+
+        <!-- Password -->
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+
+        <!--Submit Button-->
+        <button type="submit" class="btn-submit">Log In</button>
+
+        <!--Sign Up Link-->
+        <p>Don't have an account? <a href="/signup">Sign up here</a></p>
+    </form>
+</div>
