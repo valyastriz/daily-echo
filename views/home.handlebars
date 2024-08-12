@@ -2,43 +2,34 @@
 <main class="main-content">
     <aside class="sidebar">
         {{#if logged_in}}
-            {{>button}} 
-            {{!-- Show entries and action only if logged in --}}
+            <button id="new-entry-btn" class="new-entry-btn">New Entry</button>
+            <ul class="entry-list">
+                {{#each entries}}
+                <li class="entry-item">
+                    <button class="view-entry-btn" data-id="{{this.id}}">{{this.title}}</button>
+                </li>
+                {{/each}}
+            </ul>
         {{else}}
             <form id="login-form">
                 <label for="username">Username:</label>
                 <input type="text" id="name" name="name" required>
-
-                <label for="'password">Password:</label>
+                <label for="password">Password:</label>
                 <input type="password" id="password" name="password" required>
-
                 <button type="submit">Log In</button>
                 <a href="/signup">Sign Up</a>
             </form>
-            {{/if}}
+        {{/if}}
     </aside>
 
     {{#if logged_in}}
-        <section class="entry-details">
-        {{#if entry}}
-        <header class="entry-header">
-            <h1>{{entry.title}}</h1>
-            <div class="entry-meta">
-                <span class="entry-mood">{{entry.mood}}</span>
-                <span class="entry-date">{{format_date entry.created_at}}</span>
-            </div>
-        </header>
-        <div class="entry-content">
-            <p>{{entry.content}}</p>
-        </div>
-        <div class="entry-actions">
-            <button class="edit-entry-btn">Edit</button>
-            <button class="delete-entry-btn">Delete</button>
-        </div>
-        {{else}}
-        <p>Select an entry to view details, or add a new entry.</p>
-        {{/if}}
+    <section id="entry-details" class="entry-details">
+        <p>Select an entry to view details, or click 'New Entry' to create a new one.</p>
     </section>
     {{/if}}
+
     <script src="/js/login.js"></script>
+    {{#if logged_in}}
+    <script src="/js/home.js"></script>
+    {{/if}}
 </main>
