@@ -7,6 +7,7 @@ const { Entry, User } = require('../models');
 // router for rendering the home page 
 router.get('/', async (req, res) => {
     try {
+        console.log("Route accessed");
         let entries = [];
 
         if (req.session.logged_in) {
@@ -16,6 +17,7 @@ router.get('/', async (req, res) => {
                 },
                 include: [ { model: User, attributes: ['name' ] }],
             });
+            console.log(entries);
         }
 
         const serializedEntries = entries.map((entry) => entry.get({ plain: true }));
