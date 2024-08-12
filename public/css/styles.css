@@ -1,40 +1,5 @@
-/* will hold custom CSS styles */
-
-form {
-    max-width: 400px;
-    margin: auto;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-  }
-  
-  label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-  }
-  
-  input[type="text"], input[type="email"], input[type="password"] {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  button {
-    padding: 10px 20px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  button:hover {
-    background-color: #45a049;
-  }
-  * {
+/* Global Styles */
+* {
     margin: 0;
     font-family: Arial, sans-serif;
     color: #333;
@@ -81,6 +46,7 @@ form {
     border-radius: 50%;
 }
 
+/* Main Content Styles */
 .main-content {
     display: flex;
     flex: 1;
@@ -108,12 +74,6 @@ form {
     font-size: 16px;
 }
 
-.new-entry-btn img {
-    width: 24px;
-    height: 24px;
-    margin-right: 10px;
-}
-
 .entry-list {
     list-style: none;
     padding: 0;
@@ -122,16 +82,17 @@ form {
 }
 
 .entry-item {
-    background-color: #D8E1E6;
+    background-color: #D3D3D3;
     padding: 10px;
+    margin-bottom: 15px;
     border-radius: 5px;
-    margin-bottom: 10px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    display: block;
+    text-align: left;
 }
 
 .entry-item:hover {
-    background-color: #C7D4DE;
+    background-color: #C0C0C0;
 }
 
 .entry-title {
@@ -191,4 +152,81 @@ form {
 .footer2 {
     display: flex;
     justify-content: center;
+}
+
+/* Form Styles */
+form {
+    max-width: 400px;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input[type="text"], input[type="email"], input[type="password"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #aeb8af;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 5px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.signup-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0 15px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.btn-submit {
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-submit:hover {
+    background-color: #45a049;
 }

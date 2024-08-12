@@ -1,62 +1,38 @@
-{{!-- Main layout template --}}
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daily Echo - Main</title>
-    <link rel="stylesheet" href="/style.css"> 
+    <title>Daily Echo - {{title}}</title>
+    <link rel="stylesheet" href="/css/styles.css"> 
 </head>
 <body>
     <div class="container">
         <header class="header">
             <div class="logo">
-                <img src="/images/image.png" alt="Daily Echo" class="logo-image">
+                <a href="/" class="logo-link">
+                    <img src="/images/logo.webp" alt="Daily Echo" class="logo-image">
+                </a>
                 <span>Daily Echo</span>
             </div>
             <div class="user-info">
-                <span>Hello, {{User}}</span>
-                <!-- <img src="/images/image copy 2.png" alt="User Icon" class="user-icon"> -->
+                {{#if logged_in}}
+                    <span>Hello, {{user.name}}</span>
+                    <form id="logout-form" action="/api/users/logout" method="POST" style="display: inline;">
+                        <button type="submit" class="btn btn-link text-white mx-2" style="text-decoration: none;">Log out</button>
+                    </form>
+                {{/if}}
             </div>
         </header>
 
-        <main class="main-content">
-            <aside class="sidebar">
-                <button class="new-entry-btn">
-                    <img src="/images/image copy.png" alt="New Entry">
-                    New Entry
-                </button>
-                <ul class="entry-list">
-                    {{#each entries}}
-                    <li class="entry-item">
-                        <h3 class="entry-title">{{this.title}}</h3>
-                        <p class="entry-date">{{this.date}}</p>
-                        <p class="entry-tags">{{this.tags}}</p>
-                    </li>
-                    {{/each}}
-                </ul>
-            </aside>
+        {{{body}}} 
 
-            <section class="entry-details">
-                <header class="entry-header">
-                    <h1>{{entry.title}}</h1>
-                    <div class="entry-meta">
-                        <span class="entry-mood">{{entry.mood}}</span>
-                        <span class="entry-date">{{entry.date}}</span>
-                    </div>
-                    <!-- <img src="/images/image copy 3.png" alt="tablet with pencil" class="tablet" width="25"> -->
-                </header>
-                <div class="entry-content">
-                    <p>{{entry.content}}</p>
-                </div>
-            </section>
-        </main>
     </div>
     <div class="footer">
-    <footer>
-        <h4 class="footer2">&copy; 2024 Daily Echo. All rights reserved.</h4>
-    </footer>
-</div>
+        <footer>
+            <h4 class="footer2">&copy; 2024 Daily Echo. All rights reserved.</h4>
+        </footer>
+    </div>
 </body>
+<script src="/js/logout.js"></script>
 </html>

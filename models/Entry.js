@@ -70,4 +70,12 @@ Entry.init(
   }
 );
 
+Entry.associate = function(models) {
+  Entry.belongsTo(models.User, {
+    foreignKey: 'user_id',
+    onDelete: 'CASCADE',
+  });
+};
+
+
 module.exports = Entry;
