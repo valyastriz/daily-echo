@@ -51,4 +51,18 @@ router.get('/about', (req, res) => {
     res.render('about', { title: 'About Page' });
 });
 
+// route to handle rendering the newEntry page
+route.get('/new-entry', (req, res) => {
+    if (!req.session.logged_in) {
+        res.redirect('/login');
+        return;
+    }
+
+    res.render('newEntry', {
+        title: 'New Entry',
+        logged_in: req.session.logged_in,
+        user: req.session.user || null
+    });
+});
+
 module.exports = router;
