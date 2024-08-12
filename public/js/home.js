@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <h1>${entry.title}</h1>
                     <div class="entry-meta">
                         <span class="entry-mood">${entry.mood}</span>
-                        <span class="entry-date">${new Date(entry.created_at).toLocaleDateString()}</span>
+                        <span class="entry-date">${new Date(entry.created_at).toLocaleDateString()}</span> <!-- Update this line -->
                     </div>
                 </header>
                 <div class="entry-content">
@@ -80,7 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
         newEntryItem.setAttribute('data-id', entry.id);
         newEntryItem.innerHTML = `
             <span class="entry-title">${entry.title}</span>
-            <span class="entry-date">${new Date(entry.created_at).toLocaleDateString()}</span>
+            <span class="entry-date">${new Date(entry.created_at).toLocaleDateString()}</span> <!-- Update this line -->
             <span class="entry-tags">${entry.tags}</span>
         `;
         entryList.appendChild(newEntryItem);
@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <h1>${entry.title}</h1>
                     <div class="entry-meta">
                         <span class="entry-mood">${entry.mood}</span>
-                        <span class="entry-date">${new Date(entry.created_at).toLocaleDateString()}</span>
+                        <span class="entry-date">${new Date(entry.created_at).toLocaleDateString()}</span> <!-- Update this line -->
                     </div>
                 </header>
                 <div class="entry-content">
