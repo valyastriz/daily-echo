@@ -6,7 +6,11 @@
             <ul class="entry-list">
                 {{#each entries}}
                 <li class="entry-item">
-                    <button class="view-entry-btn" data-id="{{this.id}}">{{this.title}}</button>
+                    <div class="entry-button" data-id="{{this.id}}">
+                        <div class="entry-title">{{this.title}}</div>
+                        <div class="entry-date">{{this.createdAt}}</div>
+                        <div class="entry-tags">{{this.tags}}</div>
+                    </div>
                 </li>
                 {{/each}}
             </ul>
@@ -22,17 +26,21 @@
         {{/if}}
     </aside>
 
+    {{#if logged_in}}
     <section id="entry-details" class="entry-details">
-        {{#if logged_in}}
-            <p>Select an entry to view details, or click 'New Entry' to create a new one.</p>
-        {{else}}
-            <h1>Welcome...</h1>
-            <br>
-            <p>Welcome to Daily Echo – Your Private Space for Daily Reflections</p>
-            <br>
-            <p>In a fast-paced world, finding a moment to reflect and capture your thoughts is essential. Daily Echo offers a serene and secure environment to document your daily experiences, emotions, and ideas. Whether it's work-related insights or personal musings, our intuitive platform allows you to effortlessly categorize entries and revisit them with ease. Dive into your past through our interactive calendar view, and let your thoughts echo across time. Start your journey of self-discovery and personal growth with Personal Diary today.</p>
-        {{/if}}
+        <p>Select an entry to view details, or click 'New Entry' to create a new one.</p>
     </section>
+    {{else}}
+    <section id="entry-details" class="entry-details">
+        <h1>Welcome...</h1>
+        <p>Welcome to Daily Echo – Your Private Space for Daily Reflections</p>
+        <p>In a fast-paced world, finding a moment to reflect and capture your thoughts is essential.<br>
+        Daily Echo offers a serene and secure environment to document your daily experiences, emotions, and ideas.<br>
+        Whether it's work-related insights or personal musings, our intuitive platform allows you to effortlessly categorize entries and revisit them with ease.<br>
+        Dive into your past through our interactive calendar view, and let your thoughts echo across time.<br>
+        Start your journey of self-discovery and personal growth with Personal Diary today.</p>
+    </section>
+    {{/if}}
 
     <script src="/js/login.js"></script>
     {{#if logged_in}}

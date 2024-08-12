@@ -1,18 +1,16 @@
-/* General Styles */
+/* Global Styles */
 * {
     margin: 0;
     font-family: Arial, sans-serif;
     color: #333;
 }
 
-/* Container Layout */
 .container {
     display: flex;
     flex-direction: column;
     height: 100vh;
 }
 
-/* Header Styles */
 .header {
     display: flex;
     justify-content: space-between;
@@ -48,14 +46,13 @@
     border-radius: 50%;
 }
 
-/* Main Content Layout */
+/* Main Content Styles */
 .main-content {
     display: flex;
     flex: 1;
     background-color: #E5E5E5;
 }
 
-/* Sidebar Styles */
 .sidebar {
     width: 250px;
     background-color: #F9B7B1;
@@ -77,13 +74,6 @@
     font-size: 16px;
 }
 
-.new-entry-btn img {
-    width: 24px;
-    height: 24px;
-    margin-right: 10px;
-}
-
-/* Entry List Styles */
 .entry-list {
     list-style: none;
     padding: 0;
@@ -92,41 +82,29 @@
 }
 
 .entry-item {
-    background-color: #D3D3D3; /* Light gray background */
+    background-color: #D3D3D3;
     padding: 10px;
-    margin-bottom: 15px; /* Add margin between entry items */
+    margin-bottom: 15px;
     border-radius: 5px;
     cursor: pointer;
-    text-align: left;
     display: block;
-    color: #333; /* Text color */
-    font-size: 14px; /* Font size */
+    text-align: left;
 }
 
 .entry-item:hover {
-    background-color: #C0C0C0; /* Darker gray on hover */
+    background-color: #C0C0C0;
 }
 
 .entry-title {
     font-weight: bold;
-    display: block;
+    margin-bottom: 5px;
 }
 
-.entry-date {
-    display: block;
+.entry-date, .entry-tags {
     font-size: 12px;
     color: #777;
-    margin-top: 5px;
 }
 
-.entry-tags {
-    display: block;
-    font-size: 12px;
-    color: #555;
-    margin-top: 5px;
-}
-
-/* Entry Details Styles */
 .entry-details {
     flex: 1;
     padding: 20px;
@@ -171,13 +149,48 @@
     line-height: 1.6;
 }
 
-/* Footer Styles */
 .footer2 {
     display: flex;
     justify-content: center;
 }
 
-/* Signup Form Styles */
+/* Form Styles */
+form {
+    max-width: 400px;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input[type="text"], input[type="email"], input[type="password"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #aeb8af;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 5px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
 .signup-container {
     max-width: 400px;
     margin: 0 auto;
@@ -189,24 +202,6 @@
 
 .form-group {
     margin-bottom: 15px;
-}
-
-.form-group textarea {
-    width: 100%; /* Matches the width of the Title input */
-    padding: 10px;
-    margin: 5px 0 15px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    height: 200px; /* Adjust this value to control the height */
-    resize: vertical; /* Allows vertical resizing only */
-}
-
-label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
 }
 
 input[type="text"],
@@ -234,32 +229,4 @@ input[type="password"] {
 
 .btn-submit:hover {
     background-color: #45a049;
-}
-
-/* Button Hover Effect */
-button:hover {
-    background-color: #45a049;
-}
-
-/* Form Styles */
-form {
-    max-width: 400px;
-    margin: auto;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-}
-
-label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-}
-
-input[type="text"], input[type="email"], input[type="password"] {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
 }
