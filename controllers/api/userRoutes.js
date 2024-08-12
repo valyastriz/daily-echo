@@ -142,7 +142,7 @@ router.post('/logout', (req, res) => {
                 return;
             }
 
-            res.status(204).end(); // Successfully logged out
+            res.redirect('/');
         });
     } else {
         res.status(404).json({ message: 'No active session found.' });
