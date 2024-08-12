@@ -1,51 +1,18 @@
-/* will hold custom CSS styles */
-
-form {
-    max-width: 400px;
-    margin: auto;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-  }
-  
-  label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-  }
-  
-  input[type="text"], input[type="email"], input[type="password"] {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  button {
-    padding: 10px 20px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  button:hover {
-    background-color: #45a049;
-  }
-  * {
+/* General Styles */
+* {
     margin: 0;
     font-family: Arial, sans-serif;
     color: #333;
 }
 
+/* Container Layout */
 .container {
     display: flex;
     flex-direction: column;
     height: 100vh;
 }
 
+/* Header Styles */
 .header {
     display: flex;
     justify-content: space-between;
@@ -81,12 +48,14 @@ form {
     border-radius: 50%;
 }
 
+/* Main Content Layout */
 .main-content {
     display: flex;
     flex: 1;
     background-color: #E5E5E5;
 }
 
+/* Sidebar Styles */
 .sidebar {
     width: 250px;
     background-color: #F9B7B1;
@@ -114,6 +83,7 @@ form {
     margin-right: 10px;
 }
 
+/* Entry List Styles */
 .entry-list {
     list-style: none;
     padding: 0;
@@ -122,28 +92,41 @@ form {
 }
 
 .entry-item {
-    background-color: #D8E1E6;
+    background-color: #D3D3D3; /* Light gray background */
     padding: 10px;
+    margin-bottom: 15px; /* Add margin between entry items */
     border-radius: 5px;
-    margin-bottom: 10px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    text-align: left;
+    display: block;
+    color: #333; /* Text color */
+    font-size: 14px; /* Font size */
 }
 
 .entry-item:hover {
-    background-color: #C7D4DE;
+    background-color: #C0C0C0; /* Darker gray on hover */
 }
 
 .entry-title {
     font-weight: bold;
-    margin-bottom: 5px;
+    display: block;
 }
 
-.entry-date, .entry-tags {
+.entry-date {
+    display: block;
     font-size: 12px;
     color: #777;
+    margin-top: 5px;
 }
 
+.entry-tags {
+    display: block;
+    font-size: 12px;
+    color: #555;
+    margin-top: 5px;
+}
+
+/* Entry Details Styles */
 .entry-details {
     flex: 1;
     padding: 20px;
@@ -188,11 +171,13 @@ form {
     line-height: 1.6;
 }
 
+/* Footer Styles */
 .footer2 {
     display: flex;
     justify-content: center;
 }
 
+/* Signup Form Styles */
 .signup-container {
     max-width: 400px;
     margin: 0 auto;
@@ -237,4 +222,32 @@ input[type="password"] {
 
 .btn-submit:hover {
     background-color: #45a049;
+}
+
+/* Button Hover Effect */
+button:hover {
+    background-color: #45a049;
+}
+
+/* Form Styles */
+form {
+    max-width: 400px;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input[type="text"], input[type="email"], input[type="password"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }

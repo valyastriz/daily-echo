@@ -5,8 +5,10 @@
             <button id="new-entry-btn" class="new-entry-btn">New Entry</button>
             <ul class="entry-list">
                 {{#each entries}}
-                <li class="entry-item">
-                    <button class="view-entry-btn" data-id="{{this.id}}">{{this.title}}</button>
+                <li class="entry-item" data-id="{{this.id}}">
+                    <span class="entry-title">{{this.title}}</span>
+                    <span class="entry-date">{{format_date this.created_at}}</span>
+                    <span class="entry-tags">{{this.tags}}</span>
                 </li>
                 {{/each}}
             </ul>

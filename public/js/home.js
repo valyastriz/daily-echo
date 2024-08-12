@@ -46,10 +46,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Handle existing entry button clicks
-    document.querySelectorAll('.view-entry-btn').forEach(button => {
-        button.addEventListener('click', async (event) => {
-            const entryId = event.target.getAttribute('data-id');
+    // Handle existing entry clicks
+    document.querySelectorAll('.entry-item').forEach(item => {
+        item.addEventListener('click', async (event) => {
+            const entryId = item.getAttribute('data-id');
             const response = await fetch(`/api/entries/${entryId}`);
             const entry = await response.json();
 
@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <h1>${entry.title}</h1>
                     <div class="entry-meta">
                         <span class="entry-mood">${entry.mood}</span>
-                        <span class="entry-date">${new Date(entry.created_at).toLocaleString()}</span>
+                        <span class="entry-date">${new Date(entry.created_at).toLocaleDateString()}</span>
                     </div>
                 </header>
                 <div class="entry-content">
@@ -77,12 +77,17 @@ document.addEventListener('DOMContentLoaded', () => {
         const entryList = document.querySelector('.entry-list');
         const newEntryItem = document.createElement('li');
         newEntryItem.classList.add('entry-item');
-        newEntryItem.innerHTML = `<button class="view-entry-btn" data-id="${entry.id}">${entry.title}</button>`;
+        newEntryItem.setAttribute('data-id', entry.id);
+        newEntryItem.innerHTML = `
+            <span class="entry-title">${entry.title}</span>
+            <span class="entry-date">${new Date(entry.created_at).toLocaleDateString()}</span>
+            <span class="entry-tags">${entry.tags}</span>
+        `;
         entryList.appendChild(newEntryItem);
 
-        // Reattach the click event to the new button
-        newEntryItem.querySelector('.view-entry-btn').addEventListener('click', async (event) => {
-            const entryId = event.target.getAttribute('data-id');
+        // Reattach the click event to the new item
+        newEntryItem.addEventListener('click', async (event) => {
+            const entryId = newEntryItem.getAttribute('data-id');
             const response = await fetch(`/api/entries/${entryId}`);
             const entry = await response.json();
 
@@ -92,7 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <h1>${entry.title}</h1>
                     <div class="entry-meta">
                         <span class="entry-mood">${entry.mood}</span>
-                        <span class="entry-date">${new Date(entry.created_at).toLocaleString()}</span>
+                        <span class="entry-date">${new Date(entry.created_at).toLocaleDateString()}</span>
                     </div>
                 </header>
                 <div class="entry-content">
