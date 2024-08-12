@@ -141,7 +141,6 @@ router.post('/logout', (req, res) => {
                 res.status(500).json({ message: 'Failed to log out. Please try again.' });
                 return;
             }
-
             res.redirect('/');
         });
     } else {

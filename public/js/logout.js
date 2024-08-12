@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             if (response.ok) {
-                document.location.replace('/login');
+                document.location.replace('/');
             } else {
                 alert('Failed to log out.');
             }
