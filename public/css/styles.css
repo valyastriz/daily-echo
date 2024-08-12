@@ -191,6 +191,18 @@
     margin-bottom: 15px;
 }
 
+.form-group textarea {
+    width: 100%; /* Matches the width of the Title input */
+    padding: 10px;
+    margin: 5px 0 15px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    height: 200px; /* Adjust this value to control the height */
+    resize: vertical; /* Allows vertical resizing only */
+}
+
 label {
     display: block;
     margin-bottom: 5px;
