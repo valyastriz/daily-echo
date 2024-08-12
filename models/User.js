@@ -57,4 +57,12 @@ User.init(
   }
 );
 
+User.associate = function(models) {
+  User.hasMany(models.Entry, {
+    foreignKey: 'user_id',
+    onDelete: 'CASCADE',
+  });
+};
+
+
 module.exports = User;

@@ -45,7 +45,7 @@ router.post('/', async (req, res) => {
             content: req.body.content,
             mood: req.body.mood,
             tags: req.body.tags,
-            // user_id: req.session.user_id, 
+            user_id: req.session.user_id, 
         });
 
         res.status(201).json(newEntry);

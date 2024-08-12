@@ -1,1 +1,50 @@
 {{!-- homepage template --}}
+<main class="main-content">
+    <aside class="sidebar">
+        {{#if logged_in}}
+            <button id="new-entry-btn" class="new-entry-btn">New Entry</button>
+            <ul class="entry-list">
+                {{#each entries}}
+                <li class="entry-item" data-id="{{this.id}}">
+                    <div class="entry-button" data-id="{{this.id}}">
+                        <div class="entry-title">{{this.title}}</div>
+                        <div class="entry-date">{{format_date this.created_at}}</div> <!-- Update this line -->
+                        <div class="entry-tags">{{this.tags}}</div>
+                    </div>
+                </li>
+                {{/each}}
+            </ul>
+        {{else}}
+            <form id="login-form">
+                <label for="username">Username:</label>
+                <input type="text" id="name" name="name" required>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+                <button type="submit">Log In</button>
+                <a href="/signup">Sign Up</a>
+            </form>
+        {{/if}}
+    </aside>
+
+    {{#if logged_in}}
+    <section id="entry-details" class="entry-details">
+        <p>Select an entry to view details, or click 'New Entry' to create a new one.</p>
+    </section>
+    {{else}}
+    <section id="entry-details" class="entry-details">
+        <h1>Welcome...</h1>
+        <br>
+        <p>Welcome to Daily Echo – Your Private Space for Daily Reflections</p>
+        <p>In a fast-paced world, finding a moment to reflect and capture your thoughts is essential.<br>
+        Daily Echo offers a serene and secure environment to document your daily experiences, emotions, and ideas.<br>
+        Whether it's work-related insights or personal musings, our intuitive platform allows you to effortlessly categorize entries and revisit them with ease.<br>
+        Dive into your past through our interactive calendar view, and let your thoughts echo across time.<br>
+        Start your journey of self-discovery and personal growth with Personal Diary today.</p>
+    </section>
+    {{/if}}
+
+    <script src="/js/login.js"></script>
+    {{#if logged_in}}
+    <script src="/js/home.js"></script>
+    {{/if}}
+</main>

@@ -1,10 +1,29 @@
 // will hold Routes for user-related API calls
 const express = require('express');
 const router = express.Router();
-const { User, Entry } = require('../../models');
+const { User } = require('../../models');
 
+// route to handle user signup
+router.post('/signup', async (req, res) => {
+    try {
+        const newUser = await User.create({
+            name: req.body.username,
+            email: req.body.email,
+            password: req.body.password,
+        });
 
+        req.session.save(() => {
+            req.session.user_id = newUser.id,
+            req.session.logged_in = true;
 
+            res.status(200).json(newUser);
+        });
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
+
+// get all users
 router.get('/', async (req, res) => {
     try {
         const users = await User.findAll();
@@ -17,6 +36,7 @@ router.get('/', async (req, res) => {
 });
 
 
+//create new user
 router.post('/', async (req, res) => {
     try {
         const newUser = await User.create(req.body); 
@@ -26,6 +46,8 @@ router.post('/', async (req, res) => {
     }
 });
 
+
+// find user by id
 router.get('/:id', async (req, res) => {
     try {
         const user = await User.findByPk(req.params.id); 
@@ -36,6 +58,8 @@ router.get('/:id', async (req, res) => {
     }
 });
 
+
+// update user by id
 router.put('/:id', async (req, res) => {
     try {
         const [updatedRows] = await User.update(req.body,{
@@ -48,6 +72,8 @@ router.put('/:id', async (req, res) => {
     }
 });
 
+
+//delete user by id
 router.delete('/:id', async (req, res) => {
     try {
         // find the user to be deleted
@@ -74,5 +100,53 @@ router.delete('/:id', async (req, res) => {
         res.status(500).send(error.message);
     }
 });
+
+router.post('/login', async (req, res) => {
+    try {
+        const userData = await User.findOne({ where: {name: req.body.name } });
+
+        if (!userData) {
+            res.status(400).json({ message: 'Incorrect username or password, please try again. '});
+            return;
+        }
+
+        const validPassword = await userData.checkPassword(req.body.password);
+
+        if (!validPassword) {
+            res.status(400).json({ message: 'Incorrect username or password, please try again'});
+            return;
+        }
+
+        req.session.save(() => {
+            req.session.user_id = userData.id;
+            req.session.user = {
+                id: userData.id,
+                name: userData.name
+            };
+
+            req.session.logged_in = true;
+
+            res.json({ user: userData, message: 'You are now logged in!' });
+        });
+    } catch (err) {
+        res.status(400).json(err);
+    }
+});
+
+// route to log user out
+router.post('/logout', (req, res) => {
+    if (req.session.logged_in) {
+        req.session.destroy((err) => {
+            if (err) {
+                res.status(500).json({ message: 'Failed to log out. Please try again.' });
+                return;
+            }
+            res.redirect('/');
+        });
+    } else {
+        res.status(404).json({ message: 'No active session found.' });
+    }
+});
+
 
 module.exports = router;

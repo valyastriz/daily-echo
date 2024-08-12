@@ -1,0 +1,152 @@
+* {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+/* Header css */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #B0D8E6;
+    padding: 10px 20px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo-image {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+/* New entry tab along with previous work */
+.user-info {
+    font-size: 16px;
+}
+
+.main-content {
+    display: flex;
+    flex: 1;
+    background-color: #E5E5E5;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: #F9B7B1;
+    padding: 10px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.new-entry-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #D8E1E6;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.new-entry-btn img {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+}
+
+.entry-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.entry-item {
+    display: flex;
+    flex-direction: column;
+    background-color: #D8E1E6;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.entry-item:hover {
+    background-color: #C7D4DE;
+}
+
+.entry-title {
+    font-weight: bold;
+}
+
+.entry-date, .entry-tags {
+    display: block;
+    font-size: 12px;
+    color: #777;
+}
+
+.entry-details {
+    flex: 1;
+    padding: 20px;
+}
+
+.entry-header {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.entry-header h1 {
+    font-size: 36px;
+    margin: 0;
+    margin-bottom: 10px;
+}
+
+.entry-meta {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.entry-mood {
+    margin-right: 20px;
+    font-size: 18px;
+    color: #888;
+}
+
+.calendar-icon {
+    width: 24px;
+    height: 24px;
+} 
+
+
+.entry-content {
+    margin-top: 20px;
+    font-size: 18px;
+    color: #555;
+}
+
+.footer {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 10px;
+    background-color: #E5E5E5;
+}
+
+.trash-icon {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+}

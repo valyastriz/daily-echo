@@ -1,1 +1,38 @@
-{{!-- Main layout template --}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Echo - {{title}}</title>
+    <link rel="stylesheet" href="/css/styles.css"> 
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">
+                <a href="/" class="logo-link">
+                    <img src="/images/logo.webp" alt="Daily Echo" class="logo-image">
+                </a>
+                <span>Daily Echo</span>
+            </div>
+            <div class="user-info">
+                {{#if logged_in}}
+                    <span>Hello, {{user.name}}</span>
+                    <form id="logout-form" action="/api/users/logout" method="POST" style="display: inline;">
+                        <button type="submit" class="btn btn-link text-white mx-2" style="text-decoration: none;">Log out</button>
+                    </form>
+                {{/if}}
+            </div>
+        </header>
+
+        {{{body}}} 
+
+    </div>
+    <div class="footer">
+        <footer>
+            <h4 class="footer2">&copy; 2024 Daily Echo. All rights reserved.</h4>
+        </footer>
+    </div>
+</body>
+<script src="/js/logout.js"></script>
+</html>
