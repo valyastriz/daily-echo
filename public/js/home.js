@@ -71,6 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="entry-actions">
                     <button class="edit-entry-btn" data-id="${entry.id}">Edit</button>
                     <button class="delete-entry-btn" data-id="${entry.id}">Delete</button>
+                    <button class="email-entry-btn" data-id="${entry.id}">Send to Email</button>
                 </div>
             `;
 
