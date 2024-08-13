@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
             </form>
         `;
 
-        // Handle form submission
+        // Handle form submission for new entry
         document.querySelector('#new-entry-form').addEventListener('submit', async (event) => {
             event.preventDefault();
 
@@ -53,25 +53,104 @@ document.addEventListener('DOMContentLoaded', () => {
             const response = await fetch(`/api/entries/${entryId}`);
             const entry = await response.json();
 
+            
+            console.log(entry);
+
             const entryDetails = document.querySelector('#entry-details');
             entryDetails.innerHTML = `
                 <header class="entry-header">
-                    <h1>${entry.title}</h1>
+                    <h1>${entry.title || 'No Title'}</h1>
                     <div class="entry-meta">
-                        <span class="entry-mood">${entry.mood}</span>
-                        <span class="entry-date">${new Date(entry.created_at).toLocaleDateString()}</span> <!-- Update this line -->
+                        <span class="entry-mood">${entry.mood || 'No Mood'}</span>
+                        <span class="entry-date">${new Date(entry.created_at).toLocaleDateString() || 'No Date'}</span>
                     </div>
                 </header>
                 <div class="entry-content">
-                    <p>${entry.content}</p>
+                    <p>${entry.content || 'No Content'}</p>
                 </div>
                 <div class="entry-actions">
-                    <button class="edit-entry-btn">Edit</button>
-                    <button class="delete-entry-btn">Delete</button>
+                    <button class="edit-entry-btn" data-id="${entry.id}">Edit</button>
+                    <button class="delete-entry-btn" data-id="${entry.id}">Delete</button>
                 </div>
             `;
+
+            
+            attachEditButtonListener(entry.id);
+            attachDeleteButtonListener(entry.id);
         });
     });
+
+    function attachEditButtonListener(entryId) {
+        document.querySelector('.edit-entry-btn').addEventListener('click', async () => {
+            const response = await fetch(`/api/entries/${entryId}`);
+            const entry = await response.json();
+
+            const entryDetails = document.querySelector('#entry-details');
+            entryDetails.innerHTML = `
+                <form id="edit-entry-form" data-id="${entry.id}">
+                    <div class="form-group">
+                        <label for="edit-title">Title</label>
+                        <input type="text" id="edit-title" name="title" value="${entry.title || ''}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-mood">Mood</label>
+                        <input type="text" id="edit-mood" name="mood" value="${entry.mood || ''}">
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-content">Content</label>
+                        <textarea id="edit-content" name="content" rows="10" required>${entry.content || ''}</textarea>
+                    </div>
+                    <button type="submit" class="save-edit-btn">Save Changes</button>
+                </form>
+            `;
+
+            // Handle form submission for editing entry
+            document.querySelector('#edit-entry-form').addEventListener('submit', async (event) => {
+                event.preventDefault();
+                
+                const editId = event.target.getAttribute('data-id');
+                const title = document.querySelector('#edit-title').value.trim();
+                const mood = document.querySelector('#edit-mood').value.trim();
+                const content = document.querySelector('#edit-content').value.trim();
+
+                if (title && content) {
+                    const response = await fetch(`/api/entries/${editId}`, {
+                        method: 'PUT',
+                        body: JSON.stringify({ title, mood, content }),
+                        headers: { 'Content-Type': 'application/json' }
+                    });
+
+                    if (response.ok) {
+                        const updatedEntry = await response.json();
+                        const entryItem = document.querySelector(`[data-id="${updatedEntry.id}"]`);
+                        if (entryItem) {
+                            entryItem.querySelector('.entry-title').textContent = updatedEntry.title;
+                            entryItem.querySelector('.entry-date').textContent = new Date(updatedEntry.created_at).toLocaleDateString();
+                        }
+                        entryDetails.innerHTML = '<p>Entry updated successfully!</p>';
+                    } else {
+                        alert('Failed to update entry.');
+                    }
+                }
+            });
+        });
+    }
+
+    function attachDeleteButtonListener(entryId) {
+        document.querySelector('.delete-entry-btn').addEventListener('click', async () => {
+            const response = await fetch(`/api/entries/${entryId}`, { method: 'DELETE' });
+
+            if (response.ok) {
+                const entryItem = document.querySelector(`[data-id="${entryId}"]`);
+                if (entryItem) {
+                    entryItem.remove();
+                }
+                document.querySelector('#entry-details').innerHTML = '<p>Entry deleted successfully!</p>';
+            } else {
+                alert('Failed to delete entry.');
+            }
+        });
+    }
 
     function addEntryToSidebar(entry) {
         const entryList = document.querySelector('.entry-list');
@@ -79,35 +158,42 @@ document.addEventListener('DOMContentLoaded', () => {
         newEntryItem.classList.add('entry-item');
         newEntryItem.setAttribute('data-id', entry.id);
         newEntryItem.innerHTML = `
-            <span class="entry-title">${entry.title}</span>
-            <span class="entry-date">${new Date(entry.created_at).toLocaleDateString()}</span> <!-- Update this line -->
-            <span class="entry-tags">${entry.tags}</span>
+            <span class="entry-title">${entry.title || 'No Title'}</span>
+            <span class="entry-date">${new Date(entry.created_at).toLocaleDateString() || 'No Date'}</span>
+            <span class="entry-tags">${entry.tags || 'No Tags'}</span>
         `;
         entryList.appendChild(newEntryItem);
 
         // Reattach the click event to the new item
-        newEntryItem.addEventListener('click', async (event) => {
+        newEntryItem.addEventListener('click', async () => {
             const entryId = newEntryItem.getAttribute('data-id');
             const response = await fetch(`/api/entries/${entryId}`);
             const entry = await response.json();
 
+           
+            console.log(entry);
+
             const entryDetails = document.querySelector('#entry-details');
             entryDetails.innerHTML = `
                 <header class="entry-header">
-                    <h1>${entry.title}</h1>
+                    <h1>${entry.title || 'No Title'}</h1>
                     <div class="entry-meta">
-                        <span class="entry-mood">${entry.mood}</span>
-                        <span class="entry-date">${new Date(entry.created_at).toLocaleDateString()}</span> <!-- Update this line -->
+                        <span class="entry-mood">${entry.mood || 'No Mood'}</span>
+                        <span class="entry-date">${new Date(entry.created_at).toLocaleDateString() || 'No Date'}</span>
                     </div>
                 </header>
                 <div class="entry-content">
-                    <p>${entry.content}</p>
+                    <p>${entry.content || 'No Content'}</p>
                 </div>
                 <div class="entry-actions">
-                    <button class="edit-entry-btn">Edit</button>
-                    <button class="delete-entry-btn">Delete</button>
+                    <button class="edit-entry-btn" data-id="${entry.id}">Edit</button>
+                    <button class="delete-entry-btn" data-id="${entry.id}">Delete</button>
                 </div>
             `;
+
+           
+            attachEditButtonListener(entry.id);
+            attachDeleteButtonListener(entry.id);
         });
     }
 });
