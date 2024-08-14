@@ -1,13 +1,18 @@
 const nodemailer = require('nodemailer');
 
 const transporter = nodemailer.createTransport({
-    host: 'smtp.mail.yahoo.com',
-    port: 465,
-    secure: true, // use SSL
+    host: 'smtp-mail.outlook.com', // SMTP server for Outlook
+    port: 587, // Port for TLS/STARTTLS
+    secure: false, // Use TLS
     auth: {
-        user: process.env.EMAIL_USER, // your Yahoo email address
-        pass: process.env.EMAIL_PASS  // your app password
-    }
+        user: process.env.EMAIL_USER, 
+        pass: process.env.EMAIL_PASS 
+    },
+    tls: {
+        ciphers: 'SSLv3'
+    },
+    logger: true,
+    debug: true 
 });
 
 const sendEmail = async (to, subject, text) => {
