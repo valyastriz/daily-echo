@@ -78,6 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             attachEditButtonListener(entry.id);
             attachDeleteButtonListener(entry.id);
+            attachEmailButtonListener(entry.id);
         });
     });
 
@@ -195,6 +196,19 @@ document.addEventListener('DOMContentLoaded', () => {
            
             attachEditButtonListener(entry.id);
             attachDeleteButtonListener(entry.id);
+        });
+    }
+
+    // Function to attach event listener to "Send to Email" button
+    function attachEmailButtonListener(entryId) {
+        document.querySelector('.email-entry-btn').addEventListener('click', async () => {
+            const response = await fetch(`/api/entries/${entryId}/send-email`, { method: 'POST' });
+
+            if (response.ok) {
+                alert('Email sent successfully!');
+            } else {
+                alert('Failed to send email.');
+            }
         });
     }
 });
