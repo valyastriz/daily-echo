@@ -90,17 +90,21 @@ router.delete('/:id', async (req, res) => {
 });
 
 //send email route
-router.post('/entries/:id/send-email', async (req, res) => {
+router.post('/:id/send-email', async (req, res) => {
     try {
         const entry = await Entry.findByPk(req.params.id);
-
+        console.log(entry);
         if (!entry) {
             res.status(404).json({ message: 'Entry not found' });
             return;
         }
 
+        console.log(`User email logs as: ${req.session.user.email}`);
+        
         // Send the email
         const emailResult = await sendEmail(req.session.user.email, `Your Diary Entry: ${entry.title}`, entry.content);
+        console.log(`Send email logs as: ${sendEmail}`);
+        
 
         if (emailResult) {
             res.status(200).json({ message: 'Email sent successfully!' });

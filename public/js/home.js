@@ -162,7 +162,6 @@ document.addEventListener('DOMContentLoaded', () => {
         newEntryItem.innerHTML = `
             <span class="entry-title">${entry.title || 'No Title'}</span>
             <span class="entry-date">${new Date(entry.created_at).toLocaleDateString() || 'No Date'}</span>
-            <span class="entry-tags">${entry.tags || 'No Tags'}</span>
         `;
         entryList.appendChild(newEntryItem);
 
@@ -200,15 +199,39 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Function to attach event listener to "Send to Email" button
-    function attachEmailButtonListener(entryId) {
-        document.querySelector('.email-entry-btn').addEventListener('click', async () => {
-            const response = await fetch(`/api/entries/${entryId}/send-email`, { method: 'POST' });
+    // function attachEmailButtonListener(entryId) {
+    //     document.querySelector('.email-entry-btn').addEventListener('click', async () => {
+    //         const response = await fetch(`/api/entries/${entryId}/send-email`, { method: 'POST' });
 
-            if (response.ok) {
-                alert('Email sent successfully!');
-            } else {
-                alert('Failed to send email.');
-            }
+    //         if (response.ok) {
+    //             alert('Email sent successfully!');
+    //         } else {
+    //             alert('Failed to send email.');
+    //         }
+    //     });
+    // }
+    function attachEmailButtonListener(entryId) {
+        document.querySelectorAll('.email-entry-btn').forEach(button => {
+            button.addEventListener('click', async (event) => {
+                const entryId = event.target.getAttribute('data-id');
+                console.log(`Email button clicked for entry ID: ${entryId}`);
+                
+                const response = await fetch(`/api/entries/${entryId}/send-email`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' }
+                });
+        
+                if (response.ok) {
+                    alert('Email sent successfully!');
+                } else {
+                    alert('Failed to send email.');
+                }
+            });
         });
     }
+
 });
+
+
+
+
