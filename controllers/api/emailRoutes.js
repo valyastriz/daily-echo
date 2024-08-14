@@ -1,25 +1,28 @@
 const express = require('express');
 const router = express.Router();
-const sendEmail = require('../../utils/nodemailer');
 const { Entry } = require('../../models');
+const sendEmail = require('../../utils/nodemailer');
 
-router.post('/email-entry/:id', async (req, res) => {
+router.post('/entries/:id/send-email', async (req, res) => {
     try {
         const entry = await Entry.findByPk(req.params.id);
 
         if (!entry) {
-            return res.status(404).json({ message: 'Entry not found' });
+            res.status(404).json({ message: 'Entry not found' });
+            return;
         }
 
-        const userEmail = req.session.user.email; 
-        const subject = `Your Daily Echo Entry: ${entry.title}`;
-        const text = `Title: ${entry.title}\nMood: ${entry.mood}\nContent: ${entry.content}`;
+        // Send the email
+        const emailResult = await sendEmail(req.session.user.email, `Your Diary Entry: ${entry.title}`, entry.content);
 
-        await sendEmail(userEmail, subject, text);
-
-        res.status(200).json({ message: 'Email sent successfully' });
+        if (emailResult) {
+            res.status(200).json({ message: 'Email sent successfully!' });
+        } else {
+            res.status(500).json({ message: 'Failed to send email.' });
+        }
     } catch (error) {
-        res.status(500).json({ message: 'Failed to send email' });
+        console.error('Error fetching entry:', error);
+        res.status(500).json({ message: 'Failed to send email.' });
     }
 });
 
