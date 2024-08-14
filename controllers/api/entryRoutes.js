@@ -4,6 +4,7 @@ const express = require('express');
 const router = express.Router();
 const { Entry } = require('../../models');
 const withAuth = require('../../utils/auth');
+const sendEmail = require('../../utils/nodemailer');
 
 // get all diary entries
 router.get('/', withAuth, async (req, res) => {
@@ -85,6 +86,30 @@ router.delete('/:id', async (req, res) => {
         res.status(200).json({ message: 'Entry successfully deleted '});
     } catch (err) {
         res.status(500).json(err);
+    }
+});
+
+//send email route
+router.post('/entries/:id/send-email', async (req, res) => {
+    try {
+        const entry = await Entry.findByPk(req.params.id);
+
+        if (!entry) {
+            res.status(404).json({ message: 'Entry not found' });
+            return;
+        }
+
+        // Send the email
+        const emailResult = await sendEmail(req.session.user.email, `Your Diary Entry: ${entry.title}`, entry.content);
+
+        if (emailResult) {
+            res.status(200).json({ message: 'Email sent successfully!' });
+        } else {
+            res.status(500).json({ message: 'Failed to send email.' });
+        }
+    } catch (error) {
+        console.error('Error fetching entry:', error);
+        res.status(500).json({ message: 'Failed to send email.' });
     }
 });
 
