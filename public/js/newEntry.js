@@ -21,3 +21,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+    const trashButtons = document.querySelectorAll('.trash-btn');
+
+    trashButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const item = button.parentElement;
+            item.remove();
+        });
+    });
+});
