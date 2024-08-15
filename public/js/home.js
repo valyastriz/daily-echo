@@ -71,13 +71,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="entry-actions">
                     <button class="edit-entry-btn" data-id="${entry.id}">Edit</button>
                     <button class="delete-entry-btn" data-id="${entry.id}">Delete</button>
-                    <button class="email-entry-btn" data-id="${entry.id}">Send to Email</button>
+                    <button class="cheerMeUpBtn" data-id="${entry.id}">Cheer Me Up</button>
                 </div>
             `;
 
             
             attachEditButtonListener(entry.id);
             attachDeleteButtonListener(entry.id);
+            attachCheerMeUpListener(entry.id);
         });
     });
 
@@ -161,7 +162,6 @@ document.addEventListener('DOMContentLoaded', () => {
         newEntryItem.innerHTML = `
             <span class="entry-title">${entry.title || 'No Title'}</span>
             <span class="entry-date">${new Date(entry.created_at).toLocaleDateString() || 'No Date'}</span>
-            <span class="entry-tags">${entry.tags || 'No Tags'}</span>
         `;
         entryList.appendChild(newEntryItem);
 
@@ -195,6 +195,33 @@ document.addEventListener('DOMContentLoaded', () => {
            
             attachEditButtonListener(entry.id);
             attachDeleteButtonListener(entry.id);
+            attachCheerMeUpListener(entry.id);
         });
     }
+
+    async function attachCheerMeUpListener() {
+        document.querySelectorAll('.cheerMeUpBtn').forEach(button => {
+            button.addEventListener('click', async () => {
+                try {
+                    const response = await fetch('/api/entries/random-funny');
+                    const data = await response.json();
+                    if (response.ok) {
+                        alert(data.message); // Show the funny message in a pop-up
+                    } else {
+                        alert('Could not fetch a funny message. Please try again.');
+                    }
+                } catch (error) {
+                    console.error('Error fetching funny message:', error);
+                    alert('Could not fetch a funny message. Please try again.');
+                }
+            });
+        });
+    }
+    
+    
+
 });
+
+
+
+

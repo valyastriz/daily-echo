@@ -1,11 +1,24 @@
 const nodemailer = require('nodemailer');
 
+console.log(process.env.EMAIL_USER);
+console.log(process.env.EMAIL_PASS);
+
 const transporter = nodemailer.createTransport({
-    service: 'Gmail', 
+    host: 'smtp-mail.outlook.com', // SMTP server for Outlook
+    port: 587, // Port for TLS/STARTTLS
+    secure: false, // Use TLS
     auth: {
-        user: process.env.EMAIL_USER, 
-        pass: process.env.EMAIL_PASS  
+        // user: process.env.EMAIL_USER, 
+        // pass: process.env.EMAIL_PASS 
+        user: 'dailyechoecho@gmail.com', 
+        pass: 'sfadwtrmoisxkkqe' 
     }
+    // ,
+    // tls: {
+    //     ciphers: 'SSLv3'
+    // },
+    // logger: true,
+    // debug: true 
 });
 
 const sendEmail = async (to, subject, text) => {
