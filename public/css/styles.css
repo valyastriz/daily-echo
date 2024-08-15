@@ -66,6 +66,17 @@
     background-color: #E5E5E5;
 }
 
+.logout-btn {
+    width: 100%;
+    background-color: white;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.logout-btn:hover {
+    background-color: #e80c0c;
+}
+
 .sidebar {
     width: 250px;
     background-color: #a6775e;
@@ -75,16 +86,24 @@
 }
 
 .new-entry-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    width: 100%;
+    padding: 10px;
     background-color: #96b2dc;
     border: none;
-    padding: 10px;
     border-radius: 5px;
     cursor: pointer;
-    margin-bottom: 20px;
     font-size: 16px;
+    margin-bottom: 20px;
+    color: rgb(54, 79, 81); /* Ensure the text color contrasts with the background */
+    transition: box-shadow 0.3s ease-in-out; /* Smooth transition for the glow effect */
+}
+
+.new-entry-btn:hover {
+    box-shadow: 0 0 15px rgba(247, 246, 244, 0.7); /* Glow effect on hover */
+}
+
+.new-entry-btn:active {
+    box-shadow: 0 0 10px rgba(217, 240, 3, 0.819); /* Slightly reduced glow when clicked */
 }
 
 .entry-list {
@@ -238,6 +257,31 @@ input[type="text"], input[type="email"], input[type="password"] {
                  0 0 50px #080908;
 }
 
+button.save-entry-btn {
+    padding: 10px 20px;
+    background-color: rgb(119, 234, 119); /* Bold background color */
+    border: 2px solid #ffffff; /* Slightly darker border */
+    border-radius: 8px; /* Rounded corners */
+    color: rgb(4, 4, 4);
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Adds depth */
+    transition: all 0.3s ease; /* Smooth transition for all properties */
+}
+
+button.save-entry-btn:hover {
+    background-color: greenyellow; /* Lighter background color on hover */
+    border-color: greenyellow; /* Darker border color on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); /* Enhanced shadow effect */
+    transform: translateY(-3px); /* Slight lift effect */
+}
+
+button.save-entry-btn:active {
+    background-color: greenyellow; /* Darker background color on click */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Shadow returns to normal */
+    transform: translateY(0); /* Button returns to its original position */
+}
 /* button {
     padding: 10px 20px;
     background-color: #a1cfd1;

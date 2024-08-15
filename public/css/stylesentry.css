@@ -59,12 +59,6 @@
     margin-bottom: 20px;
 }
 
-.new-entry-btn img {
-    width: 24px;
-    height: 24px;
-    margin-right: 10px;
-}
-
 .entry-list {
     list-style: none;
     padding: 0;
@@ -135,7 +129,7 @@
     font-size: 18px;
     color: #555;
 }
-
+    
 .footer {
     display: flex;
     justify-content: flex-end;
