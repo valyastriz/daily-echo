@@ -5,6 +5,19 @@
     color: #211f21;
 }
 
+.intro-paragraph::first-line {
+    text-transform: uppercase;
+    letter-spacing: 0.2em; /* Adjust the tracking (letter-spacing) */
+}
+
+.intro-paragraph::first-letter {
+    font-size: 10rem; /* Equivalent to text-9xl */
+    font-weight: bold;
+    color: black;
+    margin-right: 0.75rem; /* Equivalent to mr-3 */
+    float: left;
+}
+
 .container {
     display: flex;
     flex-direction: column;
@@ -181,7 +194,51 @@ input[type="text"], input[type="email"], input[type="password"] {
     border-radius: 4px;
 }
 
-button {
+.login-button {
+    background-color:  #5A2A27; 
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 0.375rem; 
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.login-button:hover {
+    background-color: #5a9325;
+}
+
+.login-button:active {
+    background-color: #5A2A27; 
+}
+
+.login-button:focus {
+    outline: none; 
+    box-shadow: 0 0 0 3px rgba(196, 181, 253, 0.5); 
+}
+
+.glow-link {
+    color: #0f0e0e; 
+    text-decoration: none;
+    font-size: 1.2rem; 
+    text-shadow: 0 0 5px #ffffff, 
+                 0 0 10px #ffffff, 
+                 0 0 15px #ddeb17, 
+                 0 0 20px #ddeb17, 
+                 0 0 25px #ddeb17; 
+    transition: text-shadow 0.3s ease; 
+}
+
+.glow-link:hover {
+    text-shadow: 0 0 10px #ffffff,
+                 0 0 20px #ffffff,
+                 0 0 30px #080908,
+                 0 0 40px #080908,
+                 0 0 50px #080908;
+}
+
+/* button {
     padding: 10px 20px;
     background-color: #a1cfd1;
     color: rgb(0, 0, 0);
@@ -193,7 +250,7 @@ button {
 
 button:hover {
     background-color: #5A2A27;
-} 
+}  */
 
 .signup-container {
     max-width: 400px;
@@ -222,15 +279,16 @@ input[type="password"] {
 
 .btn-submit {
     width: 100%;
-    background-color: #96b2dc;
+    background-color: #5A2A27;
     color: white;
     padding: 14px 20px;
     margin: 8px 0;
     border: none;
     border-radius: 4px;
+    font-size: 1rem;
     cursor: pointer;
 }
 
 .btn-submit:hover {
-    background-color: #5A2A27;
+    background-color: #5a9325;
 }

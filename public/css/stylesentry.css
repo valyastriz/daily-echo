@@ -144,7 +144,7 @@
     background-color: #E5E5E5;
 }
 
-.trash-icon {
+.trash-icon:hoover {
     width: 24px;
     height: 24px;
     cursor: pointer;
