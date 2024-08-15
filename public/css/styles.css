@@ -2,7 +2,7 @@
 * {
     margin: 0;
     font-family: Arial, sans-serif;
-    color: #333;
+    color: #211f21;
 }
 
 .container {
@@ -15,7 +15,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #B0D8E6;
+    background-color: #a6775e;
     padding: 10px 20px;
 }
 
@@ -55,7 +55,7 @@
 
 .sidebar {
     width: 250px;
-    background-color: #F9B7B1;
+    background-color: #a6775e;
     padding: 20px;
     display: flex;
     flex-direction: column;
@@ -65,7 +65,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #D8E1E6;
+    background-color: #96b2dc;
     border: none;
     padding: 10px;
     border-radius: 5px;
@@ -82,7 +82,7 @@
 }
 
 .entry-item {
-    background-color: #D3D3D3;
+    background-color: #96b2dc;
     padding: 10px;
     margin-bottom: 15px;
     border-radius: 5px;
@@ -92,12 +92,15 @@
 }
 
 .entry-item:hover {
-    background-color: #C0C0C0;
+    background-color: #d4c5c5;
 }
 
 .entry-title {
+    width: 20px;
     font-weight: bold;
     margin-bottom: 5px;
+    display: flex;
+    justify-content: left;
 }
 
 .entry-date, .entry-tags {
@@ -106,7 +109,7 @@
 }
 
 .entry-details {
-    flex: 1;
+    /* flex: 1; */
     padding: 20px;
 }
 
@@ -147,6 +150,7 @@
 .entry-content {
     font-size: 16px;
     line-height: 1.6;
+    width: 500px;
 }
 
 .footer2 {
@@ -158,7 +162,7 @@
 form {
     max-width: 400px;
     margin: auto;
-    padding: 20px;
+    /* padding: 20px; */
     border: 1px solid #ddd;
     border-radius: 5px;
 }
@@ -179,8 +183,8 @@ input[type="text"], input[type="email"], input[type="password"] {
 
 button {
     padding: 10px 20px;
-    background-color: #aeb8af;
-    color: white;
+    background-color: #a1cfd1;
+    color: rgb(0, 0, 0);
     border: none;
     border-radius: 4px;
     cursor: pointer;
@@ -188,14 +192,14 @@ button {
 }
 
 button:hover {
-    background-color: #45a049;
-}
+    background-color: #5A2A27;
+} 
 
 .signup-container {
     max-width: 400px;
     margin: 0 auto;
     padding: 20px;
-    background-color: #f5f5f5;
+    background-color: #a6775e;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
@@ -218,7 +222,7 @@ input[type="password"] {
 
 .btn-submit {
     width: 100%;
-    background-color: #4CAF50;
+    background-color: #96b2dc;
     color: white;
     padding: 14px 20px;
     margin: 8px 0;
@@ -228,5 +232,5 @@ input[type="password"] {
 }
 
 .btn-submit:hover {
-    background-color: #45a049;
+    background-color: #5A2A27;
 }

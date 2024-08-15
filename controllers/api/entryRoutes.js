@@ -3,16 +3,26 @@
 const express = require('express');
 const router = express.Router();
 const { Entry } = require('../../models');
-// const withAuth = require('../../utils/auth');
+const withAuth = require('../../utils/auth');
+const loaderMessage = require('loader-message');
 
 // get all diary entries
-// router.get('/', withAuth, async (req, res) => {
-router.get('/', async (req, res) => {
+router.get('/', withAuth, async (req, res) => {
     try {
         const entries = await Entry.findAll();
         res.status(200).json(entries);
     } catch (err) {
         res.status(500).json(err);
+    }
+});
+
+// route that returns a funny message
+router.get('/random-funny', (req, res) => {
+    try {
+        const funnyPhrase = loaderMessage.phrase(); // Get a funny, creative phrase
+        res.json({ message: funnyPhrase });
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to get a funny message' });
     }
 });
 
@@ -88,6 +98,8 @@ router.delete('/:id', async (req, res) => {
         res.status(500).json(err);
     }
 });
+
+
 
 module.exports = router;
 
