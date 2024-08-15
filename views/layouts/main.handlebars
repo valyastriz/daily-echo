@@ -19,7 +19,7 @@
                 {{#if logged_in}}
                     <span>Hello, {{user.name}}</span>
                     <form id="logout-form" action="/api/users/logout" method="POST" style="display: inline;">
-                        <button type="submit" class="btn btn-link text-white mx-2" style="text-decoration: none;">Log out</button>
+                        <button type="submit" class="logout-btn">Log out</button>
                     </form>
                 {{/if}}
             </div>
