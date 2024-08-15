@@ -2,18 +2,27 @@
 
 const express = require('express');
 const router = express.Router();
-const sendEmail = require('../utils/nodemailer');
 const { Entry } = require('../../models');
-// const withAuth = require('../../utils/auth');
+const withAuth = require('../../utils/auth');
+const loaderMessage = require('loader-message');
 
 // get all diary entries
-// router.get('/', withAuth, async (req, res) => {
-router.get('/', async (req, res) => {
+router.get('/', withAuth, async (req, res) => {
     try {
         const entries = await Entry.findAll();
         res.status(200).json(entries);
     } catch (err) {
         res.status(500).json(err);
+    }
+});
+
+// route that returns a funny message
+router.get('/random-funny', (req, res) => {
+    try {
+        const funnyPhrase = loaderMessage.phrase(); // Get a funny, creative phrase
+        res.json({ message: funnyPhrase });
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to get a funny message' });
     }
 });
 
@@ -90,26 +99,6 @@ router.delete('/:id', async (req, res) => {
     }
 });
 
-// email an entry
-router.post('/email-entry/:id', async (req, res) => {
-    try {
-        const entry = await Entry.findByPk(req.params.id);
-
-        if (!entry) {
-            return res.status(404).json({ message: 'Entry not found' });
-        }
-
-        const userEmail = req.session.user.email; // Assuming email is stored in session
-        const subject = `Your Daily Echo Entry: ${entry.title}`;
-        const text = `Title: ${entry.title}\nMood: ${entry.mood}\nContent: ${entry.content}`;
-
-        await sendEmail(userEmail, subject, text);
-
-        res.status(200).json({ message: 'Email sent successfully' });
-    } catch (error) {
-        res.status(500).json({ message: 'Failed to send email' });
-    }
-});
 
 
 module.exports = router;
