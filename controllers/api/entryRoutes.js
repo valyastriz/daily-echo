@@ -4,7 +4,7 @@ const express = require('express');
 const router = express.Router();
 const { Entry } = require('../../models');
 const withAuth = require('../../utils/auth');
-const sendEmail = require('../../utils/nodemailer');
+const loaderMessage = require('loader-message');
 
 // get all diary entries
 router.get('/', withAuth, async (req, res) => {
@@ -13,6 +13,16 @@ router.get('/', withAuth, async (req, res) => {
         res.status(200).json(entries);
     } catch (err) {
         res.status(500).json(err);
+    }
+});
+
+// route that returns a funny message
+router.get('/random-funny', (req, res) => {
+    try {
+        const funnyPhrase = loaderMessage.phrase(); // Get a funny, creative phrase
+        res.json({ message: funnyPhrase });
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to get a funny message' });
     }
 });
 
@@ -89,33 +99,7 @@ router.delete('/:id', async (req, res) => {
     }
 });
 
-//send email route
-router.post('/:id/send-email', async (req, res) => {
-    try {
-        const entry = await Entry.findByPk(req.params.id);
-        console.log(entry);
-        if (!entry) {
-            res.status(404).json({ message: 'Entry not found' });
-            return;
-        }
 
-        console.log(`User email logs as: ${req.session.user.email}`);
-        
-        // Send the email
-        const emailResult = await sendEmail(req.session.user.email, `Your Diary Entry: ${entry.title}`, entry.content);
-        console.log(`Send email logs as: ${sendEmail}`);
-        
-
-        if (emailResult) {
-            res.status(200).json({ message: 'Email sent successfully!' });
-        } else {
-            res.status(500).json({ message: 'Failed to send email.' });
-        }
-    } catch (error) {
-        console.error('Error fetching entry:', error);
-        res.status(500).json({ message: 'Failed to send email.' });
-    }
-});
 
 module.exports = router;
 

@@ -71,14 +71,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="entry-actions">
                     <button class="edit-entry-btn" data-id="${entry.id}">Edit</button>
                     <button class="delete-entry-btn" data-id="${entry.id}">Delete</button>
-                    <button class="email-entry-btn" data-id="${entry.id}">Send to Email</button>
+                    <button class="cheerMeUpBtn" data-id="${entry.id}">Cheer Me Up</button>
                 </div>
             `;
 
             
             attachEditButtonListener(entry.id);
             attachDeleteButtonListener(entry.id);
-            attachEmailButtonListener(entry.id);
+            attachCheerMeUpListener(entry.id);
         });
     });
 
@@ -195,40 +195,30 @@ document.addEventListener('DOMContentLoaded', () => {
            
             attachEditButtonListener(entry.id);
             attachDeleteButtonListener(entry.id);
+            attachCheerMeUpListener(entry.id);
         });
     }
 
-    // Function to attach event listener to "Send to Email" button
-    // function attachEmailButtonListener(entryId) {
-    //     document.querySelector('.email-entry-btn').addEventListener('click', async () => {
-    //         const response = await fetch(`/api/entries/${entryId}/send-email`, { method: 'POST' });
-
-    //         if (response.ok) {
-    //             alert('Email sent successfully!');
-    //         } else {
-    //             alert('Failed to send email.');
-    //         }
-    //     });
-    // }
-    function attachEmailButtonListener(entryId) {
-        document.querySelectorAll('.email-entry-btn').forEach(button => {
-            button.addEventListener('click', async (event) => {
-                const entryId = event.target.getAttribute('data-id');
-                console.log(`Email button clicked for entry ID: ${entryId}`);
-                
-                const response = await fetch(`/api/entries/${entryId}/send-email`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' }
-                });
-        
-                if (response.ok) {
-                    alert('Email sent successfully!');
-                } else {
-                    alert('Failed to send email.');
+    async function attachCheerMeUpListener() {
+        document.querySelectorAll('.cheerMeUpBtn').forEach(button => {
+            button.addEventListener('click', async () => {
+                try {
+                    const response = await fetch('/api/entries/random-funny');
+                    const data = await response.json();
+                    if (response.ok) {
+                        alert(data.message); // Show the funny message in a pop-up
+                    } else {
+                        alert('Could not fetch a funny message. Please try again.');
+                    }
+                } catch (error) {
+                    console.error('Error fetching funny message:', error);
+                    alert('Could not fetch a funny message. Please try again.');
                 }
             });
         });
     }
+    
+    
 
 });
 
