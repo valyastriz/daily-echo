@@ -36,7 +36,7 @@ router.get('/', async (req, res) => {
 // route to render signup page 
 router.get('/signup', (req, res) => {
     console.log('Signup route access');
-    res.render('signup', {
+    res.render('signUp', {
         title: 'Sign Up',
     });
 });

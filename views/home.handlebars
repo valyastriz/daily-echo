@@ -8,7 +8,7 @@
                 <li class="entry-item" data-id="{{this.id}}">
                     <div class="entry-button" data-id="{{this.id}}">
                         <div class="entry-title">{{this.title}}</div>
-                        <div class="entry-date">{{format_date this.created_at}}</div> <!-- Update this line -->
+                        <div class="entry-date">{{format_date this.created_at}}</div> 
                         <div class="entry-tags">{{this.tags}}</div>
                     </div>
                 </li>
@@ -34,7 +34,12 @@
     <section id="entry-details" class="entry-details">
         <h1>Welcome...</h1>
         <br>
-        <p>Welcome to Daily Echo – Your Private Space for Daily Reflections</p>
+        <p 
+        {{!-- class="first-line:uppercase first-line:tracking-widest
+                  first-letter:text-7xl first-letter:font-bold first-letter:text-white
+                  first-letter:mr-3 first-letter:float-left
+        " --}}
+        >Welcome to Daily Echo – Your Private Space for Daily Reflections</p>
         <p>In a fast-paced world, finding a moment to reflect and capture your thoughts is essential.<br>
         Daily Echo offers a serene and secure environment to document your daily experiences, emotions, and ideas.<br>
         Whether it's work-related insights or personal musings, our intuitive platform allows you to effortlessly categorize entries and revisit them with ease.<br>

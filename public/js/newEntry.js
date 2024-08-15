@@ -21,3 +21,15 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
+// document.addEventListener('DOMContentLoaded', () => {
+//     const trashButtons = document.querySelectorAll('.trash-btn');
+    
+//     trashButtons.forEach(button => {
+//         button.addEventListener('click', async (event) => {
+//             event.preventDefault();
+//             const item = button.parentElement;
+//             item.remove();
+//         });
+//     });
+// });
