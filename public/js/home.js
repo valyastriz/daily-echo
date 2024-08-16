@@ -217,8 +217,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
-    
-    
 
 });
 
