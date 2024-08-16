@@ -6,17 +6,28 @@ const { User } = require('../../models');
 // route to handle user signup
 router.post('/signup', async (req, res) => {
     try {
-        console.log(req.body);
         const newUser = await User.create({
             name: req.body.name,
             email: req.body.email,
             password: req.body.password,
         });
 
-        req.session.save(() => {
-            req.session.user_id = newUser.id,
-            req.session.logged_in = true;
+        req.session.user_id = newUser.id;
+        req.session.user = {
+            id: newUser.id,
+            name: newUser.name,
+            email: newUser.email,
+        };
+        req.session.logged_in = true;
 
+        console.log(req.session.user);
+
+        // force saves the session
+        req.session.save((err) => {
+            if (err) {
+                console.error("Signup Error: ", err);
+                res.status(500).json({ message: 'Failed to save session ' });
+            }
             res.status(200).json(newUser);
         });
     } catch (err) {
