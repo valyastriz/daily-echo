@@ -1,7 +1,7 @@
 * {
     margin: 0;
     font-family: Arial, sans-serif;
-    color: #333;
+    color: white;
 }
 
 .container {
@@ -15,7 +15,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #DCAE96;
+    background-color: #29365cd4;
     padding: 10px 20px;
 }
 
@@ -38,12 +38,12 @@
 .main-content {
     display: flex;
     flex: 1;
-    background-color: #E5E5E5;
+    background-color: #242c45;
 }
 
 .sidebar {
     width: 250px;
-    background-color: #DCAE96;
+    background-color: #242c45;
     padding: 10px;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.087);
 }
@@ -51,7 +51,7 @@
 .new-entry-btn {
     width: 100%;
     padding: 10px;
-    background-color: #8D8C89;
+    background-color: #96b2dc;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -77,7 +77,7 @@
 }
 
 .entry-item:hover {
-    background-color: #5A2A27;
+    background-color: #96b2dc;
 }
 
 .entry-title {
@@ -93,7 +93,12 @@
 .entry-details {
     flex: 1;
     padding: 20px;
+ 
 }
+
+
+
+
 
 .entry-header {
     display: flex;
@@ -119,10 +124,10 @@
     color: #888;
 }
 
-.calendar-icon {
+/* .calendar-icon {
     width: 24px;
     height: 24px;
-} 
+}  */
 
 .entry-content {
     margin-top: 20px;
@@ -138,8 +143,3 @@
     background-color: #E5E5E5;
 }
 
-.trash-icon:hoover {
-    width: 24px;
-    height: 24px;
-    cursor: pointer;
-}
