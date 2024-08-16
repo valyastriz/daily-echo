@@ -32,7 +32,7 @@
     background-color: #242c45;
     display: flex;
     flex-direction: column;
-    /* height: 100vh; */
+    min-height: 100vh;
    
 }
 
@@ -143,12 +143,13 @@
 }
 
 .entry-title {
-    width: 20px;
     font-weight: bold;
     margin-bottom: 5px;
-    display: flex;
-    justify-content: left;
+    white-space: nowrap; 
+    overflow: hidden; 
+    text-overflow: ellipsis; 
 }
+
 
 .entry-date, .entry-tags {
     font-size: 12px;
@@ -199,7 +200,7 @@
 .entry-content {
     font-size: 16px;
     line-height: 1.6;
-    width: 500px;
+    width: 80%;
 }
 
 .footer2 {
@@ -209,7 +210,7 @@
 
 /* Form Styles */
 form {
-    max-width: 400px;
+    /* min-width: 55vw; */
     margin: auto;
     padding: 10px 0 0 0;
     border-radius: 5px;
@@ -310,6 +311,7 @@ button.save-entry-btn:active {
 }
  
 .form-group {
+    min-width: 55vw;
     margin-bottom: 15px;
     color: #2f3a5b;
 }
@@ -321,7 +323,7 @@ input[type="password"] {
     padding: 10px;
     margin: 5px 0 15px 0;
     display: inline-block;
-    /* border: 1px solid #ccc; */
+    border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
 }
@@ -340,4 +342,14 @@ input[type="password"] {
 
 .btn-submit:hover {
     background-color: #3f5a7d;
+}
+.label {
+    color: #2f3a5b;
+}
+
+textarea {
+    min-width: 55vw; /* Or any other desired width */
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }

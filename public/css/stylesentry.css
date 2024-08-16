@@ -7,7 +7,7 @@
 .container {
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    min-height: 100vh;
 }
 
 /* Header css */
@@ -78,7 +78,6 @@
     overflow: hidden; /* Hide overflowing text */
     text-overflow: ellipsis; /* Show ellipsis for overflowing text */
 }
-
 
 .entry-item:hover {
     background-color: #96b2dc;
