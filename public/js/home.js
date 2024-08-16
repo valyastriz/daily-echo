@@ -160,8 +160,8 @@ document.addEventListener('DOMContentLoaded', () => {
         newEntryItem.classList.add('entry-item');
         newEntryItem.setAttribute('data-id', entry.id);
         newEntryItem.innerHTML = `
-            <span class="entry-title">${entry.title || 'No Title'}</span>
-            <span class="entry-date">${new Date(entry.created_at).toLocaleDateString() || 'No Date'}</span>
+            <div class="entry-title">${entry.title || 'No Title'}</div>
+            <div class="entry-date">${new Date(entry.created_at).toLocaleDateString() || 'No Date'}</div>
         `;
         entryList.appendChild(newEntryItem);
 
@@ -170,9 +170,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const entryId = newEntryItem.getAttribute('data-id');
             const response = await fetch(`/api/entries/${entryId}`);
             const entry = await response.json();
-
-           
-            console.log(entry);
 
             const entryDetails = document.querySelector('#entry-details');
             entryDetails.innerHTML = `
