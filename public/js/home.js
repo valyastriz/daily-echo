@@ -189,10 +189,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="entry-actions">
                     <button class="edit-entry-btn" data-id="${entry.id}">Edit</button>
                     <button class="delete-entry-btn" data-id="${entry.id}">Delete</button>
+                    <button class="cheerMeUpBtn" data-id="${entry.id}">Cheer Me Up</button>
                 </div>
             `;
 
-           
             attachEditButtonListener(entry.id);
             attachDeleteButtonListener(entry.id);
             attachCheerMeUpListener(entry.id);
