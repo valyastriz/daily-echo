@@ -18,18 +18,13 @@
             <div class="user-info">
                 {{#if logged_in}}
                     <span>Hello, {{user.name}}</span>
-                    <form id="logout-form" action="/api/users/logout" method="POST" style="display: inline;">
+                    <div id="logout-btn" action="/api/users/logout" method="POST" style="display: inline;">
                         <button type="submit" class="logout-btn">Log out</button>
-                    </form>
+                    </div>
                 {{/if}}
             </div>
         </header>
         {{{body}}} 
-    </div>
-    <div class="footer">
-        <footer>
-            <h4 class="footer2">&copy; 2024 Daily Echo. All rights reserved.</h4>
-        </footer>
     </div>
 </body>
 <script src="/js/logout.js"></script>

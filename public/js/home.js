@@ -4,17 +4,17 @@ document.addEventListener('DOMContentLoaded', () => {
         const entryDetails = document.querySelector('#entry-details');
         entryDetails.innerHTML = `
             <form id="new-entry-form">
-                <div class="form-group">
+                <div class="form-group label">
                     <label for="title">Title</label>
                     <input type="text" id="title" name="title" required>
                 </div>
-                <div class="form-group">
+                <div class="form-group label">
                     <label for="mood">Mood</label>
                     <input type="text" id="mood" name="mood">
                 </div>
-                <div class="form-group">
+                <div class="form-group label" >
                     <label for="content">Content</label>
-                    <textarea id="content" name="content" rows="10" required></textarea>
+                    <textarea id="content" name="content" rows="20" required></textarea>
                 </div>
                 <button type="submit" class="save-entry-btn">Save Entry</button>
             </form>

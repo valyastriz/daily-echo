@@ -27,7 +27,9 @@
     </aside>
 
     {{#if logged_in}}
-    <section id="entry-details" class="entry-details">
+        <div id="white-box">
+
+        <section id="entry-details" class="entry-details">
         <p>Select an entry to view details, or click 'New Entry' to create a new one.</p>
     </section>
     {{else}}
@@ -35,14 +37,15 @@
         {{!-- <h1>Welcome...</h1> --}}
         <br>
         <p class="intro-paragraph">Welcome to Daily Echo – Your Private Space for Daily Reflections</p>
-        <p>In a fast-paced world, finding a moment to reflect and capture your thoughts is essential.<br>
-        Daily Echo offers a serene and secure environment to document your daily experiences, emotions, and ideas.<br>
-        Whether it's work-related insights or personal musings, our intuitive platform allows you to effortlessly categorize entries and revisit them with ease.<br>
-        Dive into your past through our interactive calendar view, and let your thoughts echo across time.<br>
+        <p class="intro-paragraph2">In a fast-paced world, finding a moment to reflect and capture your thoughts is essential.<br><br>
+        Daily Echo offers a serene and secure environment to document your daily experiences, emotions, and ideas.<br><br>
+        Whether it's work-related insights or personal musings, our intuitive platform allows you to effortlessly categorize entries and revisit them with ease.<br><br>
+        Dive into your past through our interactive calendar view, and let your thoughts echo across time.<br><br>
         Start your journey of self-discovery and personal growth with Personal Diary today.</p>
     </section>
     {{/if}}
 
+        </div>
     <script src="/js/login.js"></script>
     {{#if logged_in}}
     <script src="/js/home.js"></script>
