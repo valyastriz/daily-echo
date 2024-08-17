@@ -67,4 +67,29 @@ router.get('/new-entry', (req, res) => {
     });
 });
 
+// Route for rendering sidebar
+router.get('/sidebar', async (req, res) => {
+    try {
+        let entries = [];
+        if (req.session.logged_in) {
+            entries = await Entry.findAll({
+                where: {
+                    user_id: req.session.user_id
+                },
+                include: [{ model: User, attributes: ['name'] }],
+            });
+        }
+        const serializedEntries = entries.map((entry) => entry.get({ plain: true }));
+
+        res.render('layouts/partials/sidebar', {
+            logged_in: req.session.logged_in,
+            entries: serializedEntries,
+            layout: false
+        });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json(err);
+    }
+});
+
 module.exports = router;
