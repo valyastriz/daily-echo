@@ -68,10 +68,10 @@ document.addEventListener('DOMContentLoaded', () => {
                         <p>${entry.content || 'No Content'}</p>
                     </div>
                     <div class="entry-actions">
-                        <button class="edit-entry-btn" data-id="${entry.id}">Edit</button>
-                        <button class="delete-entry-btn" data-id="${entry.id}">Delete</button>
-                        <button class="cheerMeUpBtn" data-id="${entry.id}">Cheer Me Up</button>
-                    </div>
+                    <button class="edit-entry-btn entry-btn-class" data-id="${entry.id}">Edit</button>
+                    <button class="delete-entry-btn entry-btn-class" data-id="${entry.id}">Delete</button>
+                    <button class="cheerMeUpBtn entry-btn-class" data-id="${entry.id}">Cheer Me Up</button>
+                </div>
                 `;
 
                 attachEditButtonListener(entry.id);
