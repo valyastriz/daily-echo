@@ -155,7 +155,8 @@ router.post('/logout', (req, res) => {
                 res.status(500).json({ message: 'Failed to log out. Please try again.' });
                 return;
             }
-            res.redirect('/');
+            // res.redirect('/');
+            res.status(204).end();
         });
     } else {
         res.status(404).json({ message: 'No active session found.' });
