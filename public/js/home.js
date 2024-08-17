@@ -64,8 +64,8 @@ document.addEventListener('DOMContentLoaded', () => {
                             <span class="entry-date">${new Date(entry.created_at).toLocaleDateString() || 'No Date'}</span>
                         </div>
                     </header>
-                    <div class="entry-content">
-                        <p>${entry.content || 'No Content'}</p>
+                    <div>
+                        <p  id="entry-content">${entry.content || 'No Content'}</p>
                     </div>
                     <div class="entry-actions">
                     <button class="edit-entry-btn entry-btn-class" data-id="${entry.id}">Edit</button>
