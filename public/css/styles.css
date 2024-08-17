@@ -395,3 +395,11 @@ button.save-entry-btn:active {
     box-shadow: 0 0 0 3px rgba(196, 181, 253, 0.5); 
     color: white;
 }
+
+label#grey-text {
+    color: #E5E5E5;
+}
+
+#grey-text {
+    color: #E5E5E5;
+}
