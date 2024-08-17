@@ -2,7 +2,6 @@
 * {
     margin: 0;
     font-family: 'Quicksand', sans-serif;
-    color: #E5E5E5
 }
 #white-box {
     background-color: #E5E5E5;
@@ -42,6 +41,7 @@
     align-items: center;
     background-color: #242c45;
     padding: 10px 20px;
+    color: #E5E5E5
 }
 
 .logo {
@@ -92,10 +92,12 @@
 
 .logout-btn:hover {
     background-color: #668fc4;
+    color: #E5E5E5;
 }
 
 .logout-btn:active {
     background-color: #96b2dc; 
+    color: #E5E5E5;
 }
 
 .logout-btn:focus {
@@ -123,6 +125,7 @@
     font-size: 16px;
     margin-top: 5rem;
     margin-bottom: 20px;
+    font-weight: bold;
     color: rgb(54, 79, 81); /* Ensure the text color contrasts with the background */
     transition: box-shadow 0.3s ease-in-out; /* Smooth transition for the glow effect */
 }
@@ -264,10 +267,12 @@ input[type="text"], input[type="email"], input[type="password"] {
 
 .login-button:hover {
     background-color: #3f5a7d;
+    color: #E5E5E5;
 }
 
 .login-button:active {
     background-color: #96b2dc; 
+    color: #E5E5E5;
 }
 
 .login-button:focus {
@@ -288,32 +293,6 @@ input[type="text"], input[type="email"], input[type="password"] {
 
 .glow-link:hover {
     background-color: #3f5a7d;
-}
-
-button.save-entry-btn {
-    padding: 10px 20px;
-    background-color: #96b2dc; /* Bold background color */
-    border: 2px solid #ffffff; /* Slightly darker border */
-    border-radius: 8px; /* Rounded corners */
-    color: rgb(4, 4, 4);
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Adds depth */
-    transition: all 0.3s ease; /* Smooth transition for all properties */
-}
-
-button.save-entry-btn:hover {
-    background-color: #3f5a7d; /* Lighter background color on hover */
-    border-color: #3f5a7d; /* Darker border color on hover */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); /* Enhanced shadow effect */
-    transform: translateY(-3px); /* Slight lift effect */
-}
-
-button.save-entry-btn:active {
-    background-color: #3f5a7d; /* Darker background color on click */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Shadow returns to normal */
-    transform: translateY(0); /* Button returns to its original position */
 }
 
 .signup-container {
@@ -383,6 +362,7 @@ textarea {
 
 .entry-btn-class:hover {
     background-color: #3f5a7d;
+    color: #E5E5E5;
 }
 
 .entry-btn-class:active {
@@ -392,4 +372,26 @@ textarea {
 .entry-btn-class:focus {
     outline: none; 
     box-shadow: 0 0 0 3px rgba(196, 181, 253, 0.5); 
+}
+
+button.save-entry-btn {
+    width: 100%;
+    background-color: #96b2dc;
+    padding: 10px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+button.save-entry-btn:hover {
+    background-color: #3f5a7d;
+    color: white;
+}
+
+button.save-entry-btn:active {
+    outline: none; 
+    box-shadow: 0 0 0 3px rgba(196, 181, 253, 0.5); 
+    color: white;
 }

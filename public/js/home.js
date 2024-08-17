@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const entryDetails = document.querySelector('#entry-details');
                 entryDetails.innerHTML = `
                     <header class="entry-header">
-                        <h1>${entry.title || 'No Title'}</h1>
+                        <h1 id="entry-title">${entry.title || 'No Title'}</h1>
                         <div class="entry-meta">
                             <span class="entry-mood">${entry.mood || 'No Mood'}</span>
                             <span class="entry-date">${new Date(entry.created_at).toLocaleDateString() || 'No Date'}</span>
@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>
                     <div class="form-group">
                         <label for="edit-content">Content</label>
-                        <textarea id="edit-content" name="content" rows="10" required>${entry.content || ''}</textarea>
+                        <textarea class="content-text" id="edit-content" name="content" rows="10" required>${entry.content || ''}</textarea>
                     </div>
                     <button type="submit" class="save-edit-btn">Save Changes</button>
                 </form>
