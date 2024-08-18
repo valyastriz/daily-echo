@@ -1,8 +1,7 @@
 /* Global Styles */
 * {
     margin: 0;
-    font-family: Arial, sans-serif;
-    color: #E5E5E5
+    font-family: 'Quicksand', sans-serif;
 }
 #white-box {
     background-color: #E5E5E5;
@@ -42,6 +41,7 @@
     align-items: center;
     background-color: #242c45;
     padding: 10px 20px;
+    color: #E5E5E5
 }
 
 .logo {
@@ -80,17 +80,33 @@
 }
 
 .logout-btn {
-    width: 100%;
-    background-color: #E5E5E5;
+    background-color:  #96b2dc; 
+    /* color: white; */
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 0.375rem; 
+    font-size: 1rem;
     cursor: pointer;
-    font-size: 15px;
+    transition: background-color 0.2s ease;
 }
 
 .logout-btn:hover {
-    background-color: #96b2dc;
+    background-color: #668fc4;
+    color: #E5E5E5;
+}
+
+.logout-btn:active {
+    background-color: #96b2dc; 
+    color: #E5E5E5;
+}
+
+.logout-btn:focus {
+    outline: none; 
+    box-shadow: 0 0 0 3px rgba(196, 181, 253, 0.5); 
 }
 
 .sidebar {
+    min-width: 100px;
     width: 250px;
     background-color: #242c45;
     padding: 20px;
@@ -109,6 +125,7 @@
     font-size: 16px;
     margin-top: 5rem;
     margin-bottom: 20px;
+    font-weight: bold;
     color: rgb(54, 79, 81); /* Ensure the text color contrasts with the background */
     transition: box-shadow 0.3s ease-in-out; /* Smooth transition for the glow effect */
 }
@@ -188,6 +205,11 @@
     color: #888;
 }
 
+.logo-text {
+    font-size: 3rem;
+    font-family: 'Grey Qo', sans-serif;
+}
+
 .calendar-icon {
     position: absolute;
     top: 0;
@@ -233,6 +255,7 @@ input[type="text"], input[type="email"], input[type="password"] {
 
 .login-button {
     background-color:  #96b2dc; 
+    margin-bottom: 1rem;
     /* color: white; */
     padding: 0.5rem 1rem;
     border: none;
@@ -244,10 +267,12 @@ input[type="text"], input[type="email"], input[type="password"] {
 
 .login-button:hover {
     background-color: #3f5a7d;
+    color: #E5E5E5;
 }
 
 .login-button:active {
     background-color: #96b2dc; 
+    color: #E5E5E5;
 }
 
 .login-button:focus {
@@ -256,49 +281,18 @@ input[type="text"], input[type="email"], input[type="password"] {
 }
 
 .glow-link {
-    color: #0f0e0e; 
-    text-decoration: none;
-    font-size: 1.2rem; 
-    text-shadow: 0 0 5px #ffffff, 
-                 0 0 10px #ffffff, 
-                 0 0 15px #ddeb17, 
-                 0 0 20px #ddeb17, 
-                 0 0 25px #ddeb17; 
-    transition: text-shadow 0.3s ease; 
+    background-color:  #96b2dc; 
+    /* color: white; */
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 0.375rem; 
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
 }
 
 .glow-link:hover {
-    text-shadow: 0 0 10px #ffffff,
-                 0 0 20px #ffffff,
-                 0 0 30px #080908,
-                 0 0 40px #080908,
-                 0 0 50px #080908;
-}
-
-button.save-entry-btn {
-    padding: 10px 20px;
-    background-color: #96b2dc; /* Bold background color */
-    border: 2px solid #ffffff; /* Slightly darker border */
-    border-radius: 8px; /* Rounded corners */
-    color: rgb(4, 4, 4);
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Adds depth */
-    transition: all 0.3s ease; /* Smooth transition for all properties */
-}
-
-button.save-entry-btn:hover {
-    background-color: #3f5a7d; /* Lighter background color on hover */
-    border-color: #3f5a7d; /* Darker border color on hover */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); /* Enhanced shadow effect */
-    transform: translateY(-3px); /* Slight lift effect */
-}
-
-button.save-entry-btn:active {
-    background-color: #3f5a7d; /* Darker background color on click */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Shadow returns to normal */
-    transform: translateY(0); /* Button returns to its original position */
+    background-color: #3f5a7d;
 }
 
 .signup-container {
@@ -352,4 +346,60 @@ textarea {
     box-sizing: border-box;
     border: 1px solid #ccc;
     border-radius: 5px;
+}
+
+.entry-btn-class {
+    background-color:  #96b2dc; 
+    margin-bottom: 1rem;
+    /* color: white; */
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 0.375rem; 
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.entry-btn-class:hover {
+    background-color: #3f5a7d;
+    color: #E5E5E5;
+}
+
+.entry-btn-class:active {
+    background-color: #96b2dc; 
+}
+
+.entry-btn-class:focus {
+    outline: none; 
+    box-shadow: 0 0 0 3px rgba(196, 181, 253, 0.5); 
+}
+
+button.save-entry-btn {
+    width: 100%;
+    background-color: #96b2dc;
+    padding: 10px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+button.save-entry-btn:hover {
+    background-color: #3f5a7d;
+    color: white;
+}
+
+button.save-entry-btn:active {
+    outline: none; 
+    box-shadow: 0 0 0 3px rgba(196, 181, 253, 0.5); 
+    color: white;
+}
+
+label#grey-text {
+    color: #E5E5E5;
+}
+
+#grey-text {
+    color: #E5E5E5;
 }
