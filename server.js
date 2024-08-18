@@ -6,6 +6,7 @@ const routes = require('./controllers');
 const helpers = require('./utils/helpers');
 const bodyParser = require('body-parser');
 require('dotenv').config();
+const fs = require('fs');
 
 const sequelize = require('./config/connection');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
@@ -13,8 +14,14 @@ const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+console.log(path.join(__dirname, 'views/layouts/partials'));
+
 // Set up Handlebars.js engine with custom helpers
 const hbs = exphbs.create({ helpers });
+
+// manually register sidebars
+const sidebarPartial = fs.readFileSync(path.join(__dirname, 'views/layouts/partials/sidebar.handlebars'), 'utf8' );
+hbs.handlebars.registerPartial('sidebar', sidebarPartial);
 
 const sess = {
   secret: process.env.SESSION_SECRET,

@@ -1,8 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const logoutForm = document.querySelector('#logout-form');
+    const logoutForm = document.querySelector('#logout-btn');
 
     if (logoutForm) {
-        logoutForm.addEventListener('submit', async (event) => {
+        logoutForm.addEventListener('click', async (event) => {
             event.preventDefault();
 
             const response = await fetch('/api/users/logout', {

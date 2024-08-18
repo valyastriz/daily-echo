@@ -1,0 +1,22 @@
+{{#if logged_in}}
+    <button id="new-entry-btn" class="new-entry-btn">New Entry</button>
+    <ul class="entry-list">
+        {{#each entries}}
+        <li class="entry-item" data-id="{{this.id}}">
+            <div class="entry-button" data-id="{{this.id}}">
+                <div class="entry-title">{{this.title}}</div>
+                <div class="entry-date">{{format_date this.created_at}}</div>
+            </div>
+        </li>
+        {{/each}}
+    </ul>
+{{else}}
+    <form id="login-form">
+        <label id="grey-text" for="username">Username:</label>
+        <input type="text" id="name" name="name" required>
+        <label id="grey-text" for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        <button class="login-button" type="submit">Log In</button>
+        <a href="/signup" class="glow-link">Sign Up</a>
+    </form>
+{{/if}}

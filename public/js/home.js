@@ -4,17 +4,17 @@ document.addEventListener('DOMContentLoaded', () => {
         const entryDetails = document.querySelector('#entry-details');
         entryDetails.innerHTML = `
             <form id="new-entry-form">
-                <div class="form-group">
+                <div class="form-group label">
                     <label for="title">Title</label>
                     <input type="text" id="title" name="title" required>
                 </div>
-                <div class="form-group">
+                <div class="form-group label">
                     <label for="mood">Mood</label>
                     <input type="text" id="mood" name="mood">
                 </div>
-                <div class="form-group">
+                <div class="form-group label">
                     <label for="content">Content</label>
-                    <textarea id="content" name="content" rows="10" required></textarea>
+                    <textarea id="content" name="content" rows="20" required></textarea>
                 </div>
                 <button type="submit" class="save-entry-btn">Save Entry</button>
             </form>
@@ -36,8 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
 
                 if (response.ok) {
-                    const newEntry = await response.json();
-                    addEntryToSidebar(newEntry);
+                    reloadSidebar();  // Reload sidebar to get the new entry displayed properly
                     document.querySelector('#entry-details').innerHTML = '<p>Entry saved successfully! Select an entry to view details, or add another new entry.</p>';
                 } else {
                     alert('Failed to save entry.');
@@ -47,40 +46,40 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Handle existing entry clicks
-    document.querySelectorAll('.entry-item').forEach(item => {
-        item.addEventListener('click', async (event) => {
-            const entryId = item.getAttribute('data-id');
-            const response = await fetch(`/api/entries/${entryId}`);
-            const entry = await response.json();
+    attachEntryClickListeners();
 
-            
-            console.log(entry);
+    function attachEntryClickListeners() {
+        document.querySelectorAll('.entry-item').forEach(item => {
+            item.addEventListener('click', async (event) => {
+                const entryId = item.getAttribute('data-id');
+                const response = await fetch(`/api/entries/${entryId}`);
+                const entry = await response.json();
 
-            const entryDetails = document.querySelector('#entry-details');
-            entryDetails.innerHTML = `
-                <header class="entry-header">
-                    <h1>${entry.title || 'No Title'}</h1>
-                    <div class="entry-meta">
-                        <span class="entry-mood">${entry.mood || 'No Mood'}</span>
-                        <span class="entry-date">${new Date(entry.created_at).toLocaleDateString() || 'No Date'}</span>
+                const entryDetails = document.querySelector('#entry-details');
+                entryDetails.innerHTML = `
+                    <header class="entry-header">
+                        <h1 id="entry-title">${entry.title || 'No Title'}</h1>
+                        <div class="entry-meta">
+                            <span class="entry-mood">${entry.mood || 'No Mood'}</span>
+                            <span class="entry-date">${new Date(entry.created_at).toLocaleDateString() || 'No Date'}</span>
+                        </div>
+                    </header>
+                    <div>
+                        <p  id="entry-content">${entry.content || 'No Content'}</p>
                     </div>
-                </header>
-                <div class="entry-content">
-                    <p>${entry.content || 'No Content'}</p>
+                    <div class="entry-actions">
+                    <button class="edit-entry-btn entry-btn-class" data-id="${entry.id}">Edit</button>
+                    <button class="delete-entry-btn entry-btn-class" data-id="${entry.id}">Delete</button>
+                    <button class="cheerMeUpBtn entry-btn-class" data-id="${entry.id}">Cheer Me Up</button>
                 </div>
-                <div class="entry-actions">
-                    <button class="edit-entry-btn" data-id="${entry.id}">Edit</button>
-                    <button class="delete-entry-btn" data-id="${entry.id}">Delete</button>
-                    <button class="cheerMeUpBtn" data-id="${entry.id}">Cheer Me Up</button>
-                </div>
-            `;
+                `;
 
-            
-            attachEditButtonListener(entry.id);
-            attachDeleteButtonListener(entry.id);
-            attachCheerMeUpListener(entry.id);
+                attachEditButtonListener(entry.id);
+                attachDeleteButtonListener(entry.id);
+                attachCheerMeUpListener(entry.id);
+            });
         });
-    });
+    }
 
     function attachEditButtonListener(entryId) {
         document.querySelector('.edit-entry-btn').addEventListener('click', async () => {
@@ -100,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>
                     <div class="form-group">
                         <label for="edit-content">Content</label>
-                        <textarea id="edit-content" name="content" rows="10" required>${entry.content || ''}</textarea>
+                        <textarea class="content-text" id="edit-content" name="content" rows="10" required>${entry.content || ''}</textarea>
                     </div>
                     <button type="submit" class="save-edit-btn">Save Changes</button>
                 </form>
@@ -109,7 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Handle form submission for editing entry
             document.querySelector('#edit-entry-form').addEventListener('submit', async (event) => {
                 event.preventDefault();
-                
+
                 const editId = event.target.getAttribute('data-id');
                 const title = document.querySelector('#edit-title').value.trim();
                 const mood = document.querySelector('#edit-mood').value.trim();
@@ -123,13 +122,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     });
 
                     if (response.ok) {
-                        const updatedEntry = await response.json();
-                        const entryItem = document.querySelector(`[data-id="${updatedEntry.id}"]`);
-                        if (entryItem) {
-                            entryItem.querySelector('.entry-title').textContent = updatedEntry.title;
-                            entryItem.querySelector('.entry-date').textContent = new Date(updatedEntry.created_at).toLocaleDateString();
-                        }
-                        entryDetails.innerHTML = '<p>Entry updated successfully!</p>';
+                        reloadSidebar();  // Reload sidebar to reflect the updated entry
+                        document.querySelector('#entry-details').innerHTML = '<p>Entry updated successfully!</p>';
                     } else {
                         alert('Failed to update entry.');
                     }
@@ -143,59 +137,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const response = await fetch(`/api/entries/${entryId}`, { method: 'DELETE' });
 
             if (response.ok) {
-                const entryItem = document.querySelector(`[data-id="${entryId}"]`);
-                if (entryItem) {
-                    entryItem.remove();
-                }
+                reloadSidebar();  // Reload sidebar to remove the deleted entry
                 document.querySelector('#entry-details').innerHTML = '<p>Entry deleted successfully!</p>';
             } else {
                 alert('Failed to delete entry.');
             }
-        });
-    }
-
-    function addEntryToSidebar(entry) {
-        const entryList = document.querySelector('.entry-list');
-        const newEntryItem = document.createElement('li');
-        newEntryItem.classList.add('entry-item');
-        newEntryItem.setAttribute('data-id', entry.id);
-        newEntryItem.innerHTML = `
-            <span class="entry-title">${entry.title || 'No Title'}</span>
-            <span class="entry-date">${new Date(entry.created_at).toLocaleDateString() || 'No Date'}</span>
-        `;
-        entryList.appendChild(newEntryItem);
-
-        // Reattach the click event to the new item
-        newEntryItem.addEventListener('click', async () => {
-            const entryId = newEntryItem.getAttribute('data-id');
-            const response = await fetch(`/api/entries/${entryId}`);
-            const entry = await response.json();
-
-           
-            console.log(entry);
-
-            const entryDetails = document.querySelector('#entry-details');
-            entryDetails.innerHTML = `
-                <header class="entry-header">
-                    <h1>${entry.title || 'No Title'}</h1>
-                    <div class="entry-meta">
-                        <span class="entry-mood">${entry.mood || 'No Mood'}</span>
-                        <span class="entry-date">${new Date(entry.created_at).toLocaleDateString() || 'No Date'}</span>
-                    </div>
-                </header>
-                <div class="entry-content">
-                    <p>${entry.content || 'No Content'}</p>
-                </div>
-                <div class="entry-actions">
-                    <button class="edit-entry-btn" data-id="${entry.id}">Edit</button>
-                    <button class="delete-entry-btn" data-id="${entry.id}">Delete</button>
-                </div>
-            `;
-
-           
-            attachEditButtonListener(entry.id);
-            attachDeleteButtonListener(entry.id);
-            attachCheerMeUpListener(entry.id);
         });
     }
 
@@ -217,11 +163,65 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
-    
-    
 
+    function reloadSidebar() {
+        fetch('/sidebar')
+            .then(response => response.text())
+            .then(html => {
+                const sidebar = document.querySelector('.sidebar');
+                sidebar.innerHTML = html;
+
+                // Reattach event listeners
+                attachEntryClickListeners();
+                attachNewEntryListener();
+            })
+            .catch(err => console.error('Failed to load sidebar:', err));
+    }
+
+    function attachNewEntryListener() {
+        document.querySelector('#new-entry-btn').addEventListener('click', () => {
+            const entryDetails = document.querySelector('#entry-details');
+            entryDetails.innerHTML = `
+                <form id="new-entry-form">
+                    <div class="form-group label">
+                        <label for="title">Title</label>
+                        <input type="text" id="title" name="title" required>
+                    </div>
+                    <div class="form-group label">
+                        <label for="mood">Mood</label>
+                        <input type="text" id="mood" name="mood">
+                    </div>
+                    <div class="form-group label">
+                        <label for="content">Content</label>
+                        <textarea id="content" name="content" rows="20" required></textarea>
+                    </div>
+                    <button type="submit" class="save-entry-btn">Save Entry</button>
+                </form>
+            `;
+
+            // Handle form submission for new entry
+            document.querySelector('#new-entry-form').addEventListener('submit', async (event) => {
+                event.preventDefault();
+
+                const title = document.querySelector('#title').value.trim();
+                const mood = document.querySelector('#mood').value.trim();
+                const content = document.querySelector('#content').value.trim();
+
+                if (title && content) {
+                    const response = await fetch('/api/entries', {
+                        method: 'POST',
+                        body: JSON.stringify({ title, mood, content }),
+                        headers: { 'Content-Type': 'application/json' }
+                    });
+
+                    if (response.ok) {
+                        reloadSidebar();  // Reload sidebar to get the new entry displayed properly
+                        document.querySelector('#entry-details').innerHTML = '<p>Entry saved successfully! Select an entry to view details, or add another new entry.</p>';
+                    } else {
+                        alert('Failed to save entry.');
+                    }
+                }
+            });
+        });
+    }
 });
-
-
-
-

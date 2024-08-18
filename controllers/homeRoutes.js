@@ -36,7 +36,7 @@ router.get('/', async (req, res) => {
 // route to render signup page 
 router.get('/signup', (req, res) => {
     console.log('Signup route access');
-    res.render('signup', {
+    res.render('signUp', {
         title: 'Sign Up',
     });
 });
@@ -65,6 +65,31 @@ router.get('/new-entry', (req, res) => {
         logged_in: req.session.logged_in,
         user: req.session.user || null
     });
+});
+
+// Route for rendering sidebar
+router.get('/sidebar', async (req, res) => {
+    try {
+        let entries = [];
+        if (req.session.logged_in) {
+            entries = await Entry.findAll({
+                where: {
+                    user_id: req.session.user_id
+                },
+                include: [{ model: User, attributes: ['name'] }],
+            });
+        }
+        const serializedEntries = entries.map((entry) => entry.get({ plain: true }));
+
+        res.render('layouts/partials/sidebar', {
+            logged_in: req.session.logged_in,
+            entries: serializedEntries,
+            layout: false
+        });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json(err);
+    }
 });
 
 module.exports = router;
