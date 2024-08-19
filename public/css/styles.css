@@ -6,6 +6,7 @@
 #white-box {
     background-color: #E5E5E5;
     border-radius: 5px;
+    border-radius: 20%;
 }
 .intro-paragraph::first-line {
     text-transform: uppercase;
@@ -13,12 +14,14 @@
     font-size: 1.3rem; 
     color: #242c45;
     white-space: normal; /* Ensures the text wraps as expected */
-    }
+}
+
 .intro-paragraph2 {
     color: #242c45;
     font-size: 1.3rem;
     padding: 1.5rem;
 }
+
 .intro-paragraph::first-letter {
     font-size: 10rem; 
     font-weight: bold;
@@ -106,7 +109,7 @@
 }
 
 .sidebar {
-    min-width: 100px;
+    min-width: 250px;
     width: 250px;
     background-color: #242c45;
     padding: 20px;
@@ -123,7 +126,7 @@
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
-    margin-top: 5rem;
+    margin-top: 4rem;
     margin-bottom: 20px;
     font-weight: bold;
     color: rgb(54, 79, 81); /* Ensure the text color contrasts with the background */
@@ -167,6 +170,9 @@
     text-overflow: ellipsis; 
 }
 
+#entry-content p {
+    margin-bottom: 2rem;
+}
 
 .entry-date, .entry-tags {
     font-size: 12px;
@@ -177,7 +183,7 @@
     /* flex: 1; */
     padding: 20px;
     border-radius: 5px;
-
+    padding-left: 28px;
 }
 
 .entry-header {
