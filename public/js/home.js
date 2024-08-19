@@ -54,7 +54,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 const entryId = item.getAttribute('data-id');
                 const response = await fetch(`/api/entries/${entryId}`);
                 const entry = await response.json();
-
+    
+                // Convert newlines to <br> or wrap in <p> tags for proper rendering
+                const formattedContent = entry.content.split('\n').map(paragraph => `<p>${paragraph}</p>`).join('');
+    
                 const entryDetails = document.querySelector('#entry-details');
                 entryDetails.innerHTML = `
                     <header class="entry-header">
@@ -65,15 +68,15 @@ document.addEventListener('DOMContentLoaded', () => {
                         </div>
                     </header>
                     <div>
-                        <p  id="entry-content">${entry.content || 'No Content'}</p>
+                        <div id="entry-content">${formattedContent || 'No Content'}</div>
                     </div>
                     <div class="entry-actions">
-                    <button class="edit-entry-btn entry-btn-class" data-id="${entry.id}">Edit</button>
-                    <button class="delete-entry-btn entry-btn-class" data-id="${entry.id}">Delete</button>
-                    <button class="cheerMeUpBtn entry-btn-class" data-id="${entry.id}">Cheer Me Up</button>
-                </div>
+                        <button class="edit-entry-btn entry-btn-class" data-id="${entry.id}">Edit</button>
+                        <button class="delete-entry-btn entry-btn-class" data-id="${entry.id}">Delete</button>
+                        <button class="cheerMeUpBtn entry-btn-class" data-id="${entry.id}">Cheer Me Up</button>
+                    </div>
                 `;
-
+    
                 attachEditButtonListener(entry.id);
                 attachDeleteButtonListener(entry.id);
                 attachCheerMeUpListener(entry.id);
